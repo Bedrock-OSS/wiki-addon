@@ -1,2 +1,3 @@
-# bedrock-example-pack
-This repository contains an example resource pack and behavior pack, for use with Minecraft Bedrock. 
+# Wiki Addons
+
+This repository contains example behavior and resource packs, used for showcasing various mechanics on the Bedrock Wiki. While updated `mcaddons` should be provided there, this repo exists to work on the source conveniently.
