@@ -1,2 +1,5 @@
 pack.name=Ghostly Guide
 pack.description=Bedrock OSS Organization
+entity.wiki:ghost.name=Ghost
+item.spawn_egg.entity.wiki:ghost.name=Ghost
+item.wiki:ectoplasm.name=Ectoplasm
