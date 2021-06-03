@@ -1,0 +1,40 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Example 3D Items via Attachable",
+        "name": "Example 3D Items via Attachable",
+        "uuid": "c8f4bf83-0c09-4b80-83ab-796b4e3c8e88",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            16,
+            100
+        ]
+    },
+    "modules": [
+        {
+            "description": "Example 3D Items via Attachable",
+            "type": "data",
+            "uuid": "e9b1b50d-e8a0-4e47-be08-3a3db0742e55",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "02635461-59b4-4fe6-9f35-73c245f6fb3d",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}

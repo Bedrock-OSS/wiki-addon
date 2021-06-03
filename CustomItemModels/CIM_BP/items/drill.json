@@ -1,0 +1,9 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:item": {
+		"description": {
+			"identifier": "foo:drill"
+		},
+		"components": {}
+	}
+}

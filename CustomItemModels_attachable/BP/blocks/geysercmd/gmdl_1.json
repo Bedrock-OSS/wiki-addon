@@ -1,0 +1,28 @@
+{
+    "format_version": "1.16.200",
+    "minecraft:block": {
+        "description": {
+            "identifier": "geysercmd:gmdl_1"
+        },
+        "components": {
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "gmdl_1",
+                    "render_method": "alpha_test",
+                    "face_dimming": false,
+                    "ambient_occlusion": false
+                }
+            },
+            "tag:geysercmd:example_block": {},
+            "minecraft:geometry": "geometry.geysercmd.gmdl_1",
+            "minecraft:placement_filter": {
+                "conditions": [
+                    {
+                        "allowed_faces": [],
+                        "block_filter": []
+                    }
+                ]
+            }
+        }
+    }
+}

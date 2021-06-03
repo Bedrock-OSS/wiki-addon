@@ -1,0 +1,194 @@
+{
+    "format_version": "1.8.0",
+    "animations": {
+        "animation.geysercmd.gmdl_1.thirdperson_main_hand": {
+            "loop": true,
+            "bones": {
+                "geysercmd_x": {
+                    "rotation": [
+                        -19,
+                        0,
+                        0
+                    ],
+                    "position": [
+                        -0,
+                        2.25,
+                        0.5
+                    ]
+                },
+                "geysercmd_y": {
+                    "rotation": [
+                        0,
+                        -180,
+                        0
+                    ]
+                },
+                "geysercmd_z": {
+                    "rotation": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "geysercmd": {
+                    "rotation": [
+                        90,
+                        0,
+                        0
+                    ],
+                    "position": [
+                        0,
+                        13,
+                        -3
+                    ]
+                }
+            }
+        },
+        "animation.geysercmd.gmdl_1.thirdperson_off_hand": {
+            "loop": true,
+            "bones": {
+                "geysercmd_x": {
+                    "rotation": [
+                        -19,
+                        0,
+                        0
+                    ],
+                    "position": [
+                        -0,
+                        2.25,
+                        0.5
+                    ]
+                },
+                "geysercmd_y": {
+                    "rotation": [
+                        0,
+                        180,
+                        0
+                    ]
+                },
+                "geysercmd_z": {
+                    "rotation": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "geysercmd": {
+                    "rotation": [
+                        90,
+                        0,
+                        0
+                    ],
+                    "position": [
+                        0,
+                        13,
+                        -3
+                    ]
+                }
+            }
+        },
+        "animation.geysercmd.gmdl_1.head": {
+            "loop": true,
+            "bones": {
+                "geysercmd_x": {
+                    "rotation": [
+                        -0,
+                        0,
+                        0
+                    ],
+                    "position": [
+                        -0,
+                        12.8125,
+                        0
+                    ],
+                    "scale": [
+                        1.125,
+                        1.125,
+                        1.125
+                    ]
+                },
+                "geysercmd_y": {
+                    "rotation": [
+                        0,
+                        -180,
+                        0
+                    ]
+                },
+                "geysercmd_z": {
+                    "rotation": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "geysercmd": {
+                    "position": [
+                        0,
+                        19.5,
+                        0
+                    ]
+                }
+            }
+        },
+        "animation.geysercmd.gmdl_1.firstperson_main_hand": {
+            "loop": true,
+            "bones": {
+                "geysercmd": {
+                    "rotation": [
+                        90,
+                        60,
+                        -40
+                    ],
+                    "position": [
+                        4,
+                        10,
+                        4
+                    ],
+                    "scale": 1.5
+                },
+                "geysercmd_x": {
+                    "position": [
+                        -2.5,
+                        5.5,
+                        -0
+                    ],
+                    "rotation": [
+                        0.1,
+                        0.1,
+                        0.1
+                    ]
+                }
+            }
+        },
+        "animation.geysercmd.gmdl_1.firstperson_off_hand": {
+            "loop": true,
+            "bones": {
+                "geysercmd": {
+                    "rotation": [
+                        90,
+                        60,
+                        -40
+                    ],
+                    "position": [
+                        4,
+                        10,
+                        4
+                    ],
+                    "scale": 1.5
+                },
+                "geysercmd_x": {
+                    "position": [
+                        3,
+                        6,
+                        -0
+                    ],
+                    "rotation": [
+                        0.1,
+                        0.1,
+                        0.1
+                    ]
+                }
+            }
+        }
+    }
+}
