@@ -1,10 +1,16 @@
 {
-	"format_version": "1.10.0",
-	"render_controllers": {
-		"controller.render.ghost": {
-			"geometry": "Geometry.default",
-			"materials": [{"*": "Material.default"}],
-			"textures": [	"Texture.default"]
-		}
-	}
+    "format_version":"1.10.0",
+    "render_controllers":{
+        "controller.render.ghost":{
+            "geometry":"geometry.default",
+            "materials":[
+                {
+                    "*":"material.default"
+                }
+            ],
+            "textures":[
+                "texture.default"
+            ]
+        }
+    }
 }
