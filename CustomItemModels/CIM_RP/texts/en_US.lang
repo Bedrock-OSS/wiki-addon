@@ -1,5 +1,0 @@
-##bridge-file-version: #0
-pack.name=Custom Item Models
-pack.description=Custom Item Models
-
-item.foo:drill.name=Drill
