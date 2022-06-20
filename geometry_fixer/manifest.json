@@ -1,8 +1,8 @@
 {
 	"format_version": 2,
 	"header": {
-		"description": "Module That Fixes Block Geometries Post 1.18.10",
 		"name": "Block Geo Fixer",
+		"description": "Module That Fixes Block Geometries Post 1.18.10",
 		"uuid": "008f2e56-7e74-48b4-8f6b-457208e24e63",
 		"version": [
 			4,
