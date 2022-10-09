@@ -1,0 +1,17 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Timer Example (Bedrock OSS Example Pack)",
+        "description": "Requires Upcoming Creator Features | By Hatchibombotar",
+        "uuid": "7ef8e62d-ce4d-4d89-9d74-ea7ea7a570e2",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 19, 10 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "8f2c66c2-0895-47ad-9866-4bb29744ead1",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
