@@ -8,16 +8,14 @@ on:
 jobs:
     release:
         name: 📦 package
+        env:
+            ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         runs-on: ubuntu-latest
         steps:
             - name: 📚 checkout
               uses: actions/checkout@v2.1.1
-              env:
-                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
             - name: 🟢 node
               uses: actions/setup-node@v1.4.2
-              env:
-                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
               with:
                   node-version: 12
                   registry-url: https://registry.npmjs.org
