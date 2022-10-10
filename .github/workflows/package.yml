@@ -1,29 +1,25 @@
-
 name: 'Package Add-Ons'
 
 on:
     push:
         branches:
             - main
-
 jobs:
     release:
-        name: 📦 package
+        name: Release packages
         runs-on: ubuntu-latest
         steps:
-            - name: 📚 checkout
+            - name: Checkout
               uses: actions/checkout@v2.1.1
-              env:
-                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-            - name: 🟢 node
-              uses: actions/setup-node@v1.4.2
-              env:
-                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+            - name: Bedrock Addon Packager
+              uses: Fabrimat/addon-packager-action@v0.1
+            - name: Publish release
+              uses: ncipollo/release-action@v1
               with:
-                  node-version: 12
-                  registry-url: https://registry.npmjs.org
-            - name: 📦 package
-              run: npm publish --access public
-              env:
-                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+                  artifacts: "*.mcaddon"
+                  bodyFile: "release.md"
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  tag: "download"
+                  name: "Downloads"
+                  replacesArtifacts: true
+                  allowUpdates: true
