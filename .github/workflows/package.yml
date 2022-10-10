@@ -1,4 +1,5 @@
-name: "Package Add-Ons"
+
+name: 'Package Add-Ons'
 
 on:
     push:
@@ -12,14 +13,17 @@ jobs:
         steps:
             - name: 📚 checkout
               uses: actions/checkout@v2.1.1
+              env:
+                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
             - name: 🟢 node
               uses: actions/setup-node@v1.4.2
+              env:
+                  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
               with:
                   node-version: 12
                   registry-url: https://registry.npmjs.org
             - name: 📦 package
               run: npm publish --access public
-                  # echo "::`echo -n ${{secrets.NPM_AUTH_TOKEN}} | sha256sum | head -c 64`::"
               env:
                   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
