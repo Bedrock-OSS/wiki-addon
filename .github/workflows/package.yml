@@ -1,5 +1,4 @@
 name: 'Package Add-Ons'
-description: 'Package add-ons after commit'
 
 on:
     push:
