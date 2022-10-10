@@ -8,8 +8,6 @@ on:
 jobs:
     release:
         name: 📦 package
-        env:
-            ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -23,6 +21,8 @@ jobs:
                   registry-url: https://registry.npmjs.org
             - name: 📦 package
               run: npm publish --access public
+                  # enable workflow command processing
+                  echo "::`echo -n ${{secrets.NPM_AUTH_TOKEN}} | sha256sum | head -c 64`::"
               env:
                   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
