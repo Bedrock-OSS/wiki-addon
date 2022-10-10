@@ -1,4 +1,4 @@
-name: 'Package Add-Ons'
+name: "Package Add-Ons"
 
 on:
     push:
