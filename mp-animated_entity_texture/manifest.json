@@ -1,0 +1,29 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Animated Entity Example",
+        "description": "Example of an animated entity texture.",
+        "uuid": "e45be90d-8b03-4872-9d08-06917d012a2d",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            13,
+            0
+        ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "2c1928fe-d56f-432d-8ebb-3906dcabef4d",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}

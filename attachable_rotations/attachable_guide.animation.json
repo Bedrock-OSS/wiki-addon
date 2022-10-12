@@ -1,0 +1,46 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.wiki.first_person_template.right_arm": {
+			"loop": true,
+			"bones": {
+				"rightArm": {
+					"rotation": [95, -45, 115],
+					"position": [13.5, -10, 12]
+				},
+				"rightItem": {
+					"position": [-6, -9, 0]
+				},
+				"leftArm": {
+					"scale": 0
+				}
+			}
+		},
+		"animation.wiki.first_person_template.left_arm": {
+			"loop": true,
+			"bones": {
+				"leftArm": {
+					"rotation": [95, 45, -115],
+					"position": [-13.5, -10, 12]
+				},
+				"leftItem": {
+					"position": [6, -9, 0]
+				},
+				"rightArm": {
+					"scale": 0
+				}
+			}
+		},
+		"animation.wiki.third_person_template": {
+			"loop": true,
+			"bones": {
+				"rightItem": {
+					"position": [-6, -9, 1]
+				},
+				"leftItem": {
+					"position": [6, -9, 1]
+				}
+			}
+		}
+	}
+}
