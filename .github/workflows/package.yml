@@ -12,14 +12,15 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2.1.1
             - name: Bedrock Addon Packager
-              uses: Fabrimat/addon-packager-action@v0.1
+              uses: Fabrimat/addon-packager-action@v0.2
             - name: Publish release
               uses: ncipollo/release-action@v1
               with:
-                  artifacts: "*.zip"
+                  artifacts: "*.mcaddon,*.mcpack,*.zip"
                   bodyFile: "release.md"
                   token: ${{ secrets.GITHUB_TOKEN }}
                   tag: "download"
                   name: "Downloads"
                   replacesArtifacts: true
                   allowUpdates: true
+                  removeArtifacts: true
