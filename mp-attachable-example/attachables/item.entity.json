@@ -1,0 +1,36 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:attachable": {
+		"description": {
+			"identifier": "minecraft:stick",
+			"materials": {
+				"default": "entity",
+				"enchanted": "entity_alphatest_glint"
+			},
+			"textures": {
+        "default": "textures/entity/skeleton/skeleton",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.wiki.skeleton_head"
+      },
+			"animations": {
+        "hold_first_person": "animation.skeleton_head.hold_first_person",
+        "hold_third_person": "animation.skeleton_head.hold_third_person"
+      },
+      "scripts": {
+        "animate": [
+          {
+            "hold_first_person": "context.is_first_person == 1.0"
+          },
+          {
+            "hold_third_person": "context.is_first_person == 0.0"
+          }
+        ]
+      },
+			"render_controllers": [
+				"controller.render.item_default"
+			]
+		}
+	}
+}
