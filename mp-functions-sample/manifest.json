@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "This is a convenient sample function pack for learning/testing purpose.",
+        "name": "§l§fSample §r§b[FP]",
+        "uuid": "6a513b98-780d-45fd-9c53-070e8867d7ed",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 19, 73 ]
+    },
+    "modules": [
+        {
+            "description": "§r",
+            "type": "data",
+            "uuid": "c57e642c-2e2d-4f19-a80b-9fc9991742ef",
+            "version": [1, 0, 0 ]
+        }
+    ]
+}
