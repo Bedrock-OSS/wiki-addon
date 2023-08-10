@@ -1,0 +1,23 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "wiki:custom_food" // Make sure this is different from your crop and food's ID
+    },
+    "components": {
+      "minecraft:creative_category": {
+        "category": "nature",
+        "parent": "itemGroup.name.crop"
+      },
+      "minecraft:icon": {
+        "texture": "custom_food"
+      },
+      "minecraft:food": {
+        "nutrition": 4,
+        "saturation_modifier": 0.6
+      },
+      "minecraft:use_duration": 1.2,
+      "minecraft:use_animation": "eat"
+    }
+  }
+}

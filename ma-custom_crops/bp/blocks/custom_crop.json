@@ -1,0 +1,151 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:block": {
+    "description": {
+      "identifier": "wiki:custom_crop",
+      "menu_category": {
+        "category": "none" // Hide from creative inventory - seeds should be used to place
+      },
+      "properties": {
+        "wiki:growth_stage": [0, 1, 2, 3]
+      }
+    },
+    "components": {
+      "minecraft:flammable": true,
+      "minecraft:collision_box": false,
+      "minecraft:geometry": "geometry.crop",
+      "minecraft:light_dampening": 0,
+      // Break if not placed on farmland
+      "minecraft:placement_filter": {
+        "conditions": [
+          {
+            "allowed_faces": ["up"],
+            "block_filter": ["wiki:custom_farmland"]
+          }
+        ]
+      },
+      // Loot table for when the crop is not fully grown. Vanilla crops only drop seeds when young.
+      "minecraft:loot": "loot_tables/blocks/custom_crop_young.json",
+      // Trigger growth every random tick
+      "minecraft:random_ticking": {
+        "on_tick": {
+          "event": "wiki:grow",
+          "condition": "q.block_property('wiki:growth_stage') < 3"
+        }
+      },
+      // Break crop when in contact with water
+      "minecraft:queued_ticking": {
+        // Check every 10 ticks
+        "interval_range": [10, 10],
+        "looping": true,
+        "on_tick": {
+          "event": "wiki:destroy",
+          "condition": "q.block_neighbor_has_any_tag(1,0,0,'water') || q.block_neighbor_has_any_tag(-1,0,0,'water') || q.block_neighbor_has_any_tag(0,0,1,'water') || q.block_neighbor_has_any_tag(0,0,-1,'water') || q.block_neighbor_has_any_tag(0,1,0,'water')"
+        }
+      },
+      // Trigger growth with bonemeal
+      "minecraft:on_interact": {
+        "event": "wiki:fertilize",
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 'minecraft:bone_meal') && q.block_property('wiki:growth_stage') < 3"
+      }
+    },
+    "events": {
+      "wiki:destroy": {
+        "run_command": {
+          "command": "setblock ~~~ air destroy"
+        }
+      },
+      // Adds to "wiki:growth_stage" (grows crop)
+      "wiki:grow": {
+        "set_block_property": {
+          "wiki:growth_stage": "q.block_property('wiki:growth_stage') + 1"
+        }
+      },
+      // Bonemeal the crop (grow crop a random amount)
+      "wiki:fertilize": {
+        // Take bonemeal
+        "decrement_stack": {},
+        // Play effects
+        "run_command": {
+          "command": ["particle minecraft:crop_growth_emitter ~~~", "playsound item.bone_meal.use @a ~~~"]
+        },
+        // Trigger random growth
+        "set_block_property": {
+          "wiki:growth_stage": "q.block_property('wiki:growth_stage') + Math.random(1, 3 - q.block_property('wiki:growth_stage'))"
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_property('wiki:growth_stage') == 0",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "custom_crop_0",
+              "render_method": "alpha_test",
+              "face_dimming": false,
+              "ambient_occlusion": false
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 2, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_property('wiki:growth_stage') == 1",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "custom_crop_1",
+              "render_method": "alpha_test",
+              "face_dimming": false,
+              "ambient_occlusion": false
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 5, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_property('wiki:growth_stage') == 2",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "custom_crop_2",
+              "render_method": "alpha_test",
+              "face_dimming": false,
+              "ambient_occlusion": false
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 9, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_property('wiki:growth_stage') == 3",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "custom_crop_3",
+              "render_method": "alpha_test",
+              "face_dimming": false,
+              "ambient_occlusion": false
+            }
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 13, 16]
+          },
+          // Drop different loot when fully grown
+          "minecraft:loot": "loot_tables/blocks/custom_crop_mature.json"
+        }
+      }
+    ]
+  }
+}

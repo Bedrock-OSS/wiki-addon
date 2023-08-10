@@ -1,0 +1,67 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:block": {
+    "description": {
+      "identifier": "wiki:custom_dirt",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "tag:dirt": {},
+      "tag:fertilize_area": {},
+      "minecraft:unit_cube": {},
+      "minecraft:map_color": "#6C5746",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.6
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "custom_dirt"
+        }
+      },
+      // Convert to farmland or dirt path when interacted with
+      "minecraft:on_interact": {
+        "event": "wiki:transform",
+        "condition": "q.block_face && q.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_hoe', 'minecraft:is_shovel')"
+      }
+    },
+    "events": {
+      "wiki:transform": {
+        "sequence": [
+          {
+            "damage": {
+              "type": "durability",
+              "amount": 1,
+              "target": "item"
+            }
+          },
+          // Transform into farmland (hoe is used)
+          {
+            "condition": "q.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_hoe')",
+            // Play use sound
+            "run_command": {
+              "command": "playsound use.gravel @a ~~~ 1 0.8"
+            },
+            // Replace this block with "wiki:custom_farmland"
+            "set_block": {
+              "block_type": "wiki:custom_farmland"
+            }
+          },
+          // Tranform into path (shovel is used)
+          {
+            "condition": "q.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_shovel')",
+            // Play use sound
+            "run_command": {
+              "command": "playsound use.grass @a ~~~ 1 0.8"
+            },
+            // Replace this block with Dirt Path
+            "set_block": {
+              "block_type": "minecraft:grass_path"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
