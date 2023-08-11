@@ -1,0 +1,93 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:block": {
+    "description": {
+      "identifier": "wiki:double_flower_pot",
+      "menu_category": {
+        "category": "items"
+      },
+      "properties": {
+        "wiki:axis": ["x", "z"],
+        "wiki:pot_0_plant": ["none", "dandelion", "cactus"],
+        "wiki:pot_1_plant": ["none", "dandelion", "cactus"]
+      }
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "origin": [-7, 0, -3],
+        "size": [14, 6, 6]
+      },
+      // This must cover all boxes in the precise interaction script
+      "minecraft:selection_box": {
+        "origin": [-7, 0, -3],
+        "size": [14, 6, 6]
+      },
+      "minecraft:geometry": {
+        "identifier": "geometry.double_flower_pot",
+        // Conditionally display plants in their pots
+        "bone_visibility": {
+          "dandelion_0": "q.block_property('wiki:pot_0_plant') == 'dandelion'",
+          "dandelion_1": "q.block_property('wiki:pot_1_plant') == 'dandelion'",
+          "cactus_0": "q.block_property('wiki:pot_0_plant') == 'cactus'",
+          "cactus_1": "q.block_property('wiki:pot_1_plant') == 'cactus'"
+        }
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "flower_pot",
+          "render_method": "alpha_test",
+          "ambient_occlusion": false
+        },
+        // Material instances defined in model:
+        "dirt": {
+          "texture": "double_flower_pot_dirt", // Apply a darker tint to the dirt texture to replicate vanilla potted dirt
+          "render_method": "alpha_test",
+          "ambient_occlusion": false
+        },
+        "handle": {
+          "texture": "double_flower_pot_handle",
+          "render_method": "alpha_test"
+        },
+        "dandelion": {
+          "texture": "yellow_flower",
+          "render_method": "alpha_test",
+          "face_dimming": false,
+          "ambient_occlusion": false
+        },
+        "cactus_side": {
+          "texture": "cactus_side",
+          "render_method": "alpha_test"
+        },
+        "cactus_top": {
+          "texture": "cactus_top",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:on_player_placing": {
+        "event": "wiki:set_axis"
+      },
+      "minecraft:on_interact": {
+        "condition": "!q.is_sneaking && q.is_item_name_any('slot.weapon.mainhand', 'minecraft:yellow_flower', 'minecraft:cactus')", // Only trigger with valid plants
+        "event": "wiki:on_plant"
+      }
+    },
+    "events": {
+      "wiki:set_axis": {
+        "set_block_property": {
+          "wiki:axis": "Math.floor((q.cardinal_facing_2d - 2) / 2) == 1 ? 'z' : 'x'"
+        }
+      },
+      "wiki:on_plant": {
+        "decrement_stack": {}
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_property('wiki:axis') == 'z'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 90, 0] } // Front of model facing east
+        }
+      }
+    ]
+  }
+}

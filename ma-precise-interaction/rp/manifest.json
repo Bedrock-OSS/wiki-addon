@@ -1,0 +1,26 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": ["Bedrock-OSS"]
+  },
+  "header": {
+    "name": "Precise Interaction Example",
+    "description": "A pack to demonstrate precise block interaction. Example from wiki.bedrock.dev!",
+    "uuid": "356dbd08-88ab-4df1-a455-60d917f68550",
+    "min_engine_version": [1, 20, 10],
+    "version": [1, 0, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "c3938221-b461-495f-8b83-21ac1a42d9d5",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "30a07bd6-8efb-4650-bad6-41ffbbdff94a",
+      "version": [1, 0, 0]
+    }
+  ]
+}
