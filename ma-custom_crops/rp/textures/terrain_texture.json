@@ -1,29 +1,29 @@
 {
-	"num_mip_levels": 4,
-	"padding": 8,
-	"resource_pack_name": "Bedrock Wiki Examples",
-	"texture_name": "atlas.terrain",
-	"texture_data": {
-		"custom_dirt": {
-			"textures": "textures/blocks/custom_dirt"
-		},
-		"custom_farmland": {
-			"textures": "textures/blocks/custom_farmland"
-		},
-		"custom_farmland_wet": {
-			"textures": "textures/blocks/custom_farmland_wet"
-		},
-		"custom_crop_0": {
-			"textures": "textures/blocks/custom_crop_0"
-		},
-		"custom_crop_1": {
-			"textures": "textures/blocks/custom_crop_1"
-		},
-		"custom_crop_2": {
-			"textures": "textures/blocks/custom_crop_2"
-		},
-		"custom_crop_3": {
-			"textures": "textures/blocks/custom_crop_3"
-		}
-	}
+  "num_mip_levels": 4,
+  "padding": 8,
+  "resource_pack_name": "custom-crops",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "custom_dirt": {
+      "textures": "textures/blocks/custom_dirt"
+    },
+    "custom_farmland": {
+      "textures": "textures/blocks/custom_farmland"
+    },
+    "custom_farmland_wet": {
+      "textures": "textures/blocks/custom_farmland_wet"
+    },
+    "custom_crop_0": {
+      "textures": "textures/blocks/custom_crop_0"
+    },
+    "custom_crop_1": {
+      "textures": "textures/blocks/custom_crop_1"
+    },
+    "custom_crop_2": {
+      "textures": "textures/blocks/custom_crop_2"
+    },
+    "custom_crop_3": {
+      "textures": "textures/blocks/custom_crop_3"
+    }
+  }
 }

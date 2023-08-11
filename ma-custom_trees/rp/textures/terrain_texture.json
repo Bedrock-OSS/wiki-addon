@@ -1,5 +1,5 @@
 {
-  "resource_pack_name": "Custom Tree Example",
+  "resource_pack_name": "custom-tree",
   "texture_name": "atlas.terrain",
   "num_mip_levels": 4,
   "padding": 8,

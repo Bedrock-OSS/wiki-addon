@@ -8,7 +8,7 @@
     "description": "A pack to demonstrate custom fluids. Example from wiki.bedrock.dev!",
     "uuid": "ed239001-dc82-46eb-91b6-80d98dbbe867",
     "version": [1, 0, 0],
-    "min_engine_version": [1, 20, 10]
+    "min_engine_version": [1, 20, 20]
   },
   "modules": [
     {
@@ -27,7 +27,7 @@
   "dependencies": [
     {
       "module_name": "@minecraft/server",
-      "version": "1.4.0-beta"
+      "version": "1.5.0-beta"
     },
     {
       "uuid": "4844223d-0626-4304-b261-e3ff18c00541",
