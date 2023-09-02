@@ -8,7 +8,7 @@
     "description": "Adds a rotatable shell block to demonstrate custom head-like rotation. Example from wiki.bedrock.dev!",
     "uuid": "a1fdd80f-7109-42f3-918a-9c82334dce89",
     "version": [1, 0, 0],
-    "min_engine_version": [1, 20, 20]
+    "min_engine_version": [1, 20, 30]
   },
   "modules": [
     {

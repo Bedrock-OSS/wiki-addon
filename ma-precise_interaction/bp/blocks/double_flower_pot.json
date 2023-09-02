@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.20",
+  "format_version": "1.20.30",
   "minecraft:block": {
     "description": {
       "identifier": "wiki:double_flower_pot",

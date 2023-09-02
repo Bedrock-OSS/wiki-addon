@@ -8,7 +8,7 @@
     "description": "A pack to demonstrate custom crops. Example from wiki.bedrock.dev!",
     "uuid": "4aa947fb-1a1e-4fe2-9af4-76dd2b00fd30",
     "version": [1, 0, 0],
-    "min_engine_version": [1, 20, 20]
+    "min_engine_version": [1, 20, 30]
   },
   "modules": [
     {
