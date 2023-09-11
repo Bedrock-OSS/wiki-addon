@@ -11,26 +11,20 @@
         {
           "test": "has_biome_tag",
           "operator": "==",
-          "value": "taiga"
-        },
-        {
-          "test": "has_biome_tag",
-          "operator": "!=",
-          "value": "mega"
+          "value": "plains"
         }
       ]
     },
     "distribution": {
       "iterations": 1,
-      "coordinate_eval_order": "zxy",
       "x": {
-        "extent": [0, 16],
-        "distribution": "uniform"
+        "distribution": "uniform",
+        "extent": [0, 16]
       },
-      "y": "query.heightmap(variable.worldx, variable.worldz)",
+      "y": "q.heightmap(variable.worldx, variable.worldz)",
       "z": {
-        "extent": [0, 16],
-        "distribution": "uniform"
+        "distribution": "uniform",
+        "extent": [0, 16]
       }
     }
   }

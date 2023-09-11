@@ -6,7 +6,7 @@
   "header": {
     "name": "Precise Rotation Example",
     "description": "Adds a rotatable shell block to demonstrate custom head-like rotation. Example from wiki.bedrock.dev!",
-    "min_engine_version": [1, 20, 10],
+    "min_engine_version": [1, 20, 30],
     "uuid": "a80a2439-9670-4498-981d-700bfc7c694c",
     "version": [1, 0, 0]
   },

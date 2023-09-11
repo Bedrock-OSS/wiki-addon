@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.10",
+  "format_version": "1.20.30",
   "minecraft:block": {
     "description": {
       "identifier": "wiki:custom_log",
@@ -7,14 +7,14 @@
         "category": "nature",
         "group": "itemGroup.name.log"
       },
-      "properties": {
-        // Log direction property
+      "states": {
+        // Log direction state
         "wiki:axis": [0, 1, 2]
       }
     },
     "components": {
+      "tag:log": {},
       "minecraft:unit_cube": {},
-      "tag:wiki:custom_log": {},
       // Sets different textures for sides and top/bottom of log
       "minecraft:material_instances": {
         "*": {
@@ -41,7 +41,7 @@
     },
     "events": {
       "wiki:set_axis": {
-        "set_block_property": {
+        "set_block_state": {
           "wiki:axis": "Math.floor(q.block_face / 2)"
         }
       },
@@ -59,19 +59,19 @@
             }
           },
           {
-            "condition": "q.block_property('wiki:axis') == 0",
+            "condition": "q.block_state('wiki:axis') == 0",
             "run_command": {
               "command": "setblock ~~~ wiki:custom_stripped_log [\"wiki:axis\"=0]"
             }
           },
           {
-            "condition": "q.block_property('wiki:axis') == 1",
+            "condition": "q.block_state('wiki:axis') == 1",
             "run_command": {
               "command": "setblock ~~~ wiki:custom_stripped_log [\"wiki:axis\"=1]"
             }
           },
           {
-            "condition": "q.block_property('wiki:axis') == 2",
+            "condition": "q.block_state('wiki:axis') == 2",
             "run_command": {
               "command": "setblock ~~~ wiki:custom_stripped_log [\"wiki:axis\"=2]"
             }
@@ -81,19 +81,19 @@
     },
     "permutations": [
       {
-        "condition": "q.block_property('wiki:axis') == 0",
+        "condition": "q.block_state('wiki:axis') == 0",
         "components": {
           "minecraft:transformation": { "rotation": [0, 0, 0] }
         }
       },
       {
-        "condition": "q.block_property('wiki:axis') == 1",
+        "condition": "q.block_state('wiki:axis') == 1",
         "components": {
           "minecraft:transformation": { "rotation": [90, 0, 0] }
         }
       },
       {
-        "condition": "q.block_property('wiki:axis') == 2",
+        "condition": "q.block_state('wiki:axis') == 2",
         "components": {
           "minecraft:transformation": { "rotation": [0, 0, 90] }
         }
