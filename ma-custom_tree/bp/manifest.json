@@ -8,7 +8,7 @@
     "description": "A pack to demonstrate custom trees. Example from wiki.bedrock.dev!",
     "uuid": "bf712fe0-1ccb-4075-a0d9-429bd9565dad",
     "version": [1, 0, 0],
-    "min_engine_version": [1, 20, 30]
+    "min_engine_version": [1, 20, 10]
   },
   "modules": [
     {

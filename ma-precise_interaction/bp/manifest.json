@@ -7,7 +7,7 @@
     "name": "Precise Interaction Example",
     "description": "A pack to demonstrate precise block interaction. Example from wiki.bedrock.dev!",
     "uuid": "30a07bd6-8efb-4650-bad6-41ffbbdff94a",
-    "min_engine_version": [1, 20, 30],
+    "min_engine_version": [1, 20, 10],
     "version": [1, 0, 0]
   },
   "modules": [
@@ -27,7 +27,7 @@
   "dependencies": [
     {
       "module_name": "@minecraft/server",
-      "version": "1.6.0-beta"
+      "version": "1.4.0-beta"
     },
     {
       "uuid": "356dbd08-88ab-4df1-a455-60d917f68550",

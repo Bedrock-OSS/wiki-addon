@@ -5,7 +5,16 @@
       "entries": [
         {
           "type": "item",
-          "name": "wiki:custom_seeds"
+          "name": "wiki:custom_seeds",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
         }
       ]
     }

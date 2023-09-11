@@ -80,7 +80,7 @@ function releasePlants(e) {
   }
 }
 
-world.afterEvents.playerBreakBlock.subscribe((e) => {
+world.afterEvents.blockBreak.subscribe((e) => {
   if (e.brokenBlockPermutation.type.id === "wiki:double_flower_pot") releasePlants(e);
 });
 world.afterEvents.blockExplode.subscribe((e) => {

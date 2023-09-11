@@ -1,12 +1,12 @@
 {
-  "resource_pack_name": "custom-crops",
-  "texture_name": "atlas.items",
-  "texture_data": {
-    "custom_seeds": {
-      "textures": "textures/items/custom_seeds"
-    },
-    "custom_food": {
-      "textures": "textures/items/custom_food"
-    }
-  }
+	"resource_pack_name": "Bedrock Wiki Examples",
+	"texture_name": "atlas.items",
+	"texture_data": {
+		"custom_seeds": {
+			"textures": "textures/items/custom_seeds"
+		},
+		"custom_food": {
+			"textures": "textures/items/custom_food"
+		}
+	}
 }

@@ -1,11 +1,11 @@
 {
-  "format_version": "1.20.30",
+  "format_version": "1.20.10",
   "minecraft:block": {
     "description": {
       "identifier": "wiki:custom_sapling",
-      "states": {
-        // Sapling's growth stage
-        "wiki:growth_stage": [0, 1, 2]
+      "properties": {
+        // Properties of sapling's growth stage
+        "wiki:growth": [0, 1, 2]
       }
     },
     "components": {
@@ -15,7 +15,6 @@
         "size": [12, 13, 12]
       },
       "minecraft:light_dampening": 0,
-      "minecraft:geometry": "geometry.custom_sapling",
       "minecraft:material_instances": {
         "*": {
           "texture": "custom_sapling",
@@ -24,6 +23,7 @@
           "ambient_occlusion": false
         }
       },
+      "minecraft:geometry": "geometry.custom_sapling",
       // Add loot component so it will drop sapling placer item
       "minecraft:loot": "loot_tables/blocks/custom_sapling.json",
       // Allows to place block only on these blocks
@@ -35,45 +35,44 @@
           }
         ]
       },
-      // Trigger growth on each random tick
+      "minecraft:on_interact": {
+        "condition": "q.is_item_name_any('slot.weapon.mainhand','minecraft:bone_meal')",
+        "event": "wiki:bone_meal"
+      },
+      // Starts to grow
       "minecraft:random_ticking": {
         "on_tick": {
           "event": "wiki:grow"
         }
-      },
-      // Trigger growth when bone meal is used
-      "minecraft:on_interact": {
-        "condition": "q.is_item_name_any('slot.weapon.mainhand', 'minecraft:bone_meal')",
-        "event": "wiki:fertilize"
       }
     },
     "events": {
       "wiki:grow": {
         "sequence": [
           {
-            "condition": "q.block_state('wiki:growth_stage') < 2",
-            "set_block_state": {
-              "wiki:growth_stage": "q.block_state('wiki:growth_stage') + 1"
+            "condition": "q.block_property('wiki:growth') < 2",
+            "set_block_property": {
+              "wiki:growth": "q.block_property('wiki:growth') + 1"
             }
           },
           {
-            "condition": "q.block_state('wiki:growth_stage') == 2",
+            "condition": "q.block_property('wiki:growth') == 2",
             "run_command": {
-              "command": "structure load custom_tree ~-2~~-2"
+              "command": "structure load custom_tree ~-2 ~ ~-2"
             }
           }
         ]
       },
-      "wiki:fertilize": {
+      "wiki:bone_meal": {
         // Removes item that was used to interact
         "decrement_stack": {},
         // Trigger growth
         "trigger": {
           "event": "wiki:grow"
         },
-        // Trigger effects
+        // Spawn particles
         "run_command": {
-          "command": ["particle minecraft:crop_growth_emitter ~~~", "playsound item.bone_meal.use @a ~~~"]
+          "command": "particle minecraft:crop_growth_emitter ~~~"
         }
       }
     }
