@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.10",
+  "format_version": "1.20.30",
   "minecraft:block": {
     "description": {
       "identifier": "wiki:pigeonholes",
@@ -12,7 +12,7 @@
           "y_rotation_offset": 180
         }
       },
-      "properties": {
+      "states": {
         "wiki:slot_0_occupied": [false, true],
         "wiki:slot_1_occupied": [false, true],
         "wiki:slot_2_occupied": [false, true],
@@ -29,18 +29,18 @@
         "identifier": "geometry.pigeonholes",
         "bone_visibility": {
           // Display each slot as empty/occupied
-          "empty_slot_0": "!q.block_property('wiki:slot_0_occupied')",
-          "empty_slot_1": "!q.block_property('wiki:slot_1_occupied')",
-          "empty_slot_2": "!q.block_property('wiki:slot_2_occupied')",
-          "empty_slot_3": "!q.block_property('wiki:slot_3_occupied')",
-          "empty_slot_4": "!q.block_property('wiki:slot_4_occupied')",
-          "empty_slot_5": "!q.block_property('wiki:slot_5_occupied')",
-          "occupied_slot_0": "q.block_property('wiki:slot_0_occupied')",
-          "occupied_slot_1": "q.block_property('wiki:slot_1_occupied')",
-          "occupied_slot_2": "q.block_property('wiki:slot_2_occupied')",
-          "occupied_slot_3": "q.block_property('wiki:slot_3_occupied')",
-          "occupied_slot_4": "q.block_property('wiki:slot_4_occupied')",
-          "occupied_slot_5": "q.block_property('wiki:slot_5_occupied')"
+          "empty_slot_0": "!q.block_state('wiki:slot_0_occupied')",
+          "empty_slot_1": "!q.block_state('wiki:slot_1_occupied')",
+          "empty_slot_2": "!q.block_state('wiki:slot_2_occupied')",
+          "empty_slot_3": "!q.block_state('wiki:slot_3_occupied')",
+          "empty_slot_4": "!q.block_state('wiki:slot_4_occupied')",
+          "empty_slot_5": "!q.block_state('wiki:slot_5_occupied')",
+          "occupied_slot_0": "q.block_state('wiki:slot_0_occupied')",
+          "occupied_slot_1": "q.block_state('wiki:slot_1_occupied')",
+          "occupied_slot_2": "q.block_state('wiki:slot_2_occupied')",
+          "occupied_slot_3": "q.block_state('wiki:slot_3_occupied')",
+          "occupied_slot_4": "q.block_state('wiki:slot_4_occupied')",
+          "occupied_slot_5": "q.block_state('wiki:slot_5_occupied')"
         }
       },
       "minecraft:material_instances": {
@@ -60,7 +60,7 @@
       },
       "minecraft:on_interact": {
         // Only allow interaction with the front face
-        "condition": "(q.block_face == 2 && q.block_property('minecraft:cardinal_direction') == 'north') || (q.block_face == 3 && q.block_property('minecraft:cardinal_direction') == 'south') || (q.block_face == 4 && q.block_property('minecraft:cardinal_direction') == 'west') || (q.block_face == 5 && q.block_property('minecraft:cardinal_direction') == 'east')",
+        "condition": "(q.block_face == 2 && q.block_state('minecraft:cardinal_direction') == 'north') || (q.block_face == 3 && q.block_state('minecraft:cardinal_direction') == 'south') || (q.block_face == 4 && q.block_state('minecraft:cardinal_direction') == 'west') || (q.block_face == 5 && q.block_state('minecraft:cardinal_direction') == 'east')",
         "event": "wiki:on_insert"
       }
     },
@@ -77,28 +77,28 @@
     "permutations": [
       // Facing north
       {
-        "condition": "q.block_property('minecraft:cardinal_direction') == 'north'",
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
         "components": {
           "minecraft:transformation": { "rotation": [0, 0, 0] }
         }
       },
       // Facing west
       {
-        "condition": "q.block_property('minecraft:cardinal_direction') == 'west'",
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
         "components": {
           "minecraft:transformation": { "rotation": [0, 90, 0] }
         }
       },
       // Facing south
       {
-        "condition": "q.block_property('minecraft:cardinal_direction') == 'south'",
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
         "components": {
           "minecraft:transformation": { "rotation": [0, 180, 0] }
         }
       },
       // Facing east
       {
-        "condition": "q.block_property('minecraft:cardinal_direction') == 'east'",
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
         "components": {
           "minecraft:transformation": { "rotation": [0, -90, 0] }
         }
