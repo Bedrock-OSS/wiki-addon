@@ -1,12 +1,12 @@
 {
-  "format_version": "1.20.10",
+  "format_version": "1.20.30",
   "minecraft:block": {
     "description": {
       "identifier": "wiki:double_flower_pot",
       "menu_category": {
         "category": "items"
       },
-      "properties": {
+      "states": {
         "wiki:axis": ["x", "z"],
         "wiki:pot_0_plant": ["none", "dandelion", "cactus"],
         "wiki:pot_1_plant": ["none", "dandelion", "cactus"]
@@ -26,10 +26,10 @@
         "identifier": "geometry.double_flower_pot",
         // Conditionally display plants in their pots
         "bone_visibility": {
-          "dandelion_0": "q.block_property('wiki:pot_0_plant') == 'dandelion'",
-          "dandelion_1": "q.block_property('wiki:pot_1_plant') == 'dandelion'",
-          "cactus_0": "q.block_property('wiki:pot_0_plant') == 'cactus'",
-          "cactus_1": "q.block_property('wiki:pot_1_plant') == 'cactus'"
+          "dandelion_0": "q.block_state('wiki:pot_0_plant') == 'dandelion'",
+          "dandelion_1": "q.block_state('wiki:pot_1_plant') == 'dandelion'",
+          "cactus_0": "q.block_state('wiki:pot_0_plant') == 'cactus'",
+          "cactus_1": "q.block_state('wiki:pot_1_plant') == 'cactus'"
         }
       },
       "minecraft:material_instances": {
@@ -73,7 +73,7 @@
     },
     "events": {
       "wiki:set_axis": {
-        "set_block_property": {
+        "set_block_state": {
           "wiki:axis": "Math.floor((q.cardinal_facing_2d - 2) / 2) == 1 ? 'z' : 'x'"
         }
       },
@@ -83,7 +83,7 @@
     },
     "permutations": [
       {
-        "condition": "q.block_property('wiki:axis') == 'z'",
+        "condition": "q.block_state('wiki:axis') == 'z'",
         "components": {
           "minecraft:transformation": { "rotation": [0, 90, 0] } // Front of model facing east
         }
