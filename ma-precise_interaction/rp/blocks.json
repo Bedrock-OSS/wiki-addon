@@ -1,9 +1,9 @@
 {
-  "format_version": [1, 1, 0],
-  "wiki:pigeonholes": {
-    "sound": "chiseled_bookshelf"
-  },
-  "wiki:double_flower_pot": {
-    "sound": "stone"
-  }
+    "format_version": "1.21.20",
+    "wiki:pigeonholes": {
+        "sound": "chiseled_bookshelf"
+    },
+    "wiki:double_flower_pot": {
+        "sound": "stone"
+    }
 }

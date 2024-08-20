@@ -1,88 +1,104 @@
-import { world, ItemStack } from "@minecraft/server";
+import { world, ItemStack, EquipmentSlot, GameMode } from "@minecraft/server";
 import SelectionBoxes from "../utils/selection_boxes"; // Import the SelectionBoxes class to use it
 
 // Support orientation along both horizontal axes
 const pots = {
-  x: new SelectionBoxes({ origin: [-7, 0, -3], size: [6, 6, 6] }, { origin: [1, 0, -3], size: [6, 6, 6] }),
-  z: new SelectionBoxes({ origin: [-3, 0, -7], size: [6, 6, 6] }, { origin: [-3, 0, 1], size: [6, 6, 6] }),
+    x: new SelectionBoxes({ origin: [-7, 0, -3], size: [6, 6, 6] }, { origin: [1, 0, -3], size: [6, 6, 6] }),
+    z: new SelectionBoxes({ origin: [-3, 0, -7], size: [6, 6, 6] }, { origin: [-3, 0, 1], size: [6, 6, 6] }),
 };
 
 // The state value and sound associated with each plant
 const plants = {
-  "minecraft:yellow_flower": {
-    value: "dandelion",
-    sound: "dig.grass",
-  },
-  "minecraft:cactus": {
-    value: "cactus",
-    sound: "dig.cloth",
-  },
+    "minecraft:dandelion": {
+        value: "dandelion",
+        sound: "dig.grass",
+    },
+    "minecraft:cactus": {
+        value: "cactus",
+        sound: "dig.cloth",
+    },
 };
 
+const getAxis = (direction) => (direction === "west" || direction === "east" ? "z" : "x");
+
 // Get the selected pot for the appropriate axis
-const getSelectedPot = (e) => pots[e.block.permutation.getState("wiki:axis")].getSelected(e.faceLocation);
+function getSelectedPot(block, faceLocation) {
+    const direction = block.permutation.getState("minecraft:cardinal_direction");
+    const axis = getAxis(direction);
+
+    return pots[axis].getSelected(faceLocation);
+}
 
 const isPotOccupied = (block, pot) => block.permutation.getState(`wiki:pot_${pot}_plant`) !== "none";
 
-const setPotPlant = (block, pot, plant) => block.setPermutation(block.permutation.withState(`wiki:pot_${pot}_plant`, plant));
+const setPotPlant = (block, pot, plant) =>
+    block.setPermutation(block.permutation.withState(`wiki:pot_${pot}_plant`, plant));
 
-// Our flower pots even have sound effects!
-const playPlantSound = (dimension, location, sound) => dimension.runCommand(`playsound ${sound} @a ${location.x} ${location.y} ${location.z} 0.5`);
+/** @type {import("@minecraft/server").BlockCustomComponent} */
+const DoubleFlowerPotBlockComponent = {
+    onPlayerInteract(event) {
+        const { block, dimension, faceLocation, player } = event;
+        if (!player) return;
 
-// If a pot is not selected (the inbetween area is targeted) or is already filled, the item use is cancelled.
-world.beforeEvents.itemUseOn.subscribe((e) => {
-  if (e.block.typeId !== "wiki:double_flower_pot" || !plants[e.itemStack.typeId]) return;
+        const equippable = player.getComponent("minecraft:equippable");
+        if (!equippable) return;
 
-  const selectedPot = getSelectedPot(e);
+        const mainhand = equippable.getEquipmentSlot(EquipmentSlot.Mainhand);
 
-  if (selectedPot === undefined || isPotOccupied(e.block, selectedPot)) e.cancel = true;
-});
+        const relativeFaceLocation = {
+            x: faceLocation.x - block.location.x,
+            y: faceLocation.y - block.location.y,
+            z: faceLocation.z - block.location.z,
+        };
 
-// -------------------------------
-//    Plant in the selected pot
-// -------------------------------
-world.afterEvents.itemUseOn.subscribe((e) => {
-  if (e.block.typeId !== "wiki:double_flower_pot" || !plants[e.itemStack.typeId] || e.source.isSneaking) return;
+        const selectedPot = getSelectedPot(block, relativeFaceLocation);
+        if (selectedPot === undefined) return;
 
-  const selectedPot = getSelectedPot(e);
-  const plant = plants[e.itemStack.typeId];
+        if (mainhand.hasItem() && !isPotOccupied(block, selectedPot)) {
+            const plant = plants[mainhand.typeId];
+            if (!plant) return;
 
-  setPotPlant(e.block, selectedPot, plant.value);
-  playPlantSound(e.block.dimension, e.block.location, plant.sound);
+            if (player.getGameMode() !== GameMode.creative) {
+                if (mainhand.amount > 1) mainhand.amount--;
+                else mainhand.setItem(undefined);
+            }
+
+            setPotPlant(block, selectedPot, plant.value);
+            dimension.playSound(plant.sound, block.center(), { volume: 0.5 });
+        } else if (!mainhand.hasItem() && isPotOccupied(block, selectedPot)) {
+            const plantValue = block.permutation.getState(`wiki:pot_${selectedPot}_plant`);
+            const plantId = Object.keys(plants).find((key) => plants[key].value === plantValue);
+
+            setPotPlant(block, selectedPot, "none");
+            dimension.playSound("random.pop", block.center());
+
+            mainhand.setItem(new ItemStack(plantId));
+        }
+    },
+    onPlayerDestroy: releasePlants,
+};
+
+world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent("wiki:double_flower_pot", DoubleFlowerPotBlockComponent);
 });
 
 // -------------------------------
 //  Release plants on destruction
 // -------------------------------
-function releasePlants(e) {
-  const states = (e.brokenBlockPermutation ?? e.explodedBlockPermutation).getAllStates();
+function releasePlants({ block, destroyedBlockPermutation, dimension }) {
+    const states = destroyedBlockPermutation.getAllStates();
 
-  // Array of plant state values e.g. ["cactus", "dandelion"]
-  const storedPlants = Object.entries(states)
-    .filter(([state, value]) => state.startsWith("wiki:pot") && value !== "none")
-    .map(([state, value]) => value);
+    // Array of plant state values e.g. ["cactus", "dandelion"]
+    const storedPlants = Object.entries(states)
+        .filter(([state, value]) => state.startsWith("wiki:pot") && value !== "none")
+        .map(([state, value]) => value);
 
-  if (storedPlants.length === 0) return;
+    if (storedPlants.length === 0) return;
 
-  // Centre loot in block
-  const lootLocation = {
-    x: e.block.location.x + 0.5,
-    y: e.block.location.y + 0.5,
-    z: e.block.location.z + 0.5,
-  };
+    // Create an item entity for every potted plant
+    for (const plant of storedPlants) {
+        const plantId = Object.keys(plants).find((key) => plants[key].value === plant);
 
-  // Create an item entity for every potted plant
-  for (const plant of storedPlants) {
-    const plantId = Object.keys(plants).find((key) => plants[key].value === plant);
-
-    e.dimension.spawnItem(new ItemStack(plantId), lootLocation);
-    playPlantSound(e.dimension, e.block.location, plants[plantId].sound);
-  }
+        dimension.spawnItem(new ItemStack(plantId), block.center());
+    }
 }
-
-world.afterEvents.playerBreakBlock.subscribe((e) => {
-  if (e.brokenBlockPermutation.type.id === "wiki:double_flower_pot") releasePlants(e);
-});
-world.afterEvents.blockExplode.subscribe((e) => {
-  if (e.explodedBlockPermutation.type.id === "wiki:double_flower_pot") releasePlants(e);
-});

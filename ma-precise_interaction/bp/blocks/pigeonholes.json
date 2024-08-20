@@ -1,108 +1,95 @@
 {
-  "format_version": "1.20.30",
-  "minecraft:block": {
-    "description": {
-      "identifier": "wiki:pigeonholes",
-      "menu_category": {
-        "category": "items"
-      },
-      "traits": {
-        "minecraft:placement_direction": {
-          "enabled_states": ["minecraft:cardinal_direction"],
-          "y_rotation_offset": 180
-        }
-      },
-      "states": {
-        "wiki:slot_0_occupied": [false, true],
-        "wiki:slot_1_occupied": [false, true],
-        "wiki:slot_2_occupied": [false, true],
-        "wiki:slot_3_occupied": [false, true],
-        "wiki:slot_4_occupied": [false, true],
-        "wiki:slot_5_occupied": [false, true]
-      }
-    },
-    "components": {
-      "minecraft:destructible_by_mining": {
-        "seconds_to_destroy": 1.5
-      },
-      "minecraft:geometry": {
-        "identifier": "geometry.pigeonholes",
-        "bone_visibility": {
-          // Display each slot as empty/occupied
-          "empty_slot_0": "!q.block_state('wiki:slot_0_occupied')",
-          "empty_slot_1": "!q.block_state('wiki:slot_1_occupied')",
-          "empty_slot_2": "!q.block_state('wiki:slot_2_occupied')",
-          "empty_slot_3": "!q.block_state('wiki:slot_3_occupied')",
-          "empty_slot_4": "!q.block_state('wiki:slot_4_occupied')",
-          "empty_slot_5": "!q.block_state('wiki:slot_5_occupied')",
-          "occupied_slot_0": "q.block_state('wiki:slot_0_occupied')",
-          "occupied_slot_1": "q.block_state('wiki:slot_1_occupied')",
-          "occupied_slot_2": "q.block_state('wiki:slot_2_occupied')",
-          "occupied_slot_3": "q.block_state('wiki:slot_3_occupied')",
-          "occupied_slot_4": "q.block_state('wiki:slot_4_occupied')",
-          "occupied_slot_5": "q.block_state('wiki:slot_5_occupied')"
-        }
-      },
-      "minecraft:material_instances": {
-        "*": {
-          "texture": "stripped_bamboo_block_top"
+    "format_version": "1.21.20",
+    "minecraft:block": {
+        "description": {
+            "identifier": "wiki:pigeonholes",
+            "menu_category": {
+                "category": "items"
+            },
+            "states": {
+                "wiki:slot_0_occupied": [false, true],
+                "wiki:slot_1_occupied": [false, true],
+                "wiki:slot_2_occupied": [false, true],
+                "wiki:slot_3_occupied": [false, true],
+                "wiki:slot_4_occupied": [false, true],
+                "wiki:slot_5_occupied": [false, true]
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": ["minecraft:cardinal_direction"],
+                    "y_rotation_offset": 180
+                }
+            }
         },
-        // Material instances defined in model:
-        "side": {
-          "texture": "stripped_bamboo_block"
+        "components": {
+            "minecraft:custom_components": ["wiki:pigeonholes_storage"],
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 1.5
+            },
+            "minecraft:geometry": {
+                "identifier": "geometry.pigeonholes",
+                "culling": "wiki:pigeonholes_culling",
+                "bone_visibility": {
+                    // Display each slot as empty/occupied
+                    "empty_slot_0": "!q.block_state('wiki:slot_0_occupied')",
+                    "empty_slot_1": "!q.block_state('wiki:slot_1_occupied')",
+                    "empty_slot_2": "!q.block_state('wiki:slot_2_occupied')",
+                    "empty_slot_3": "!q.block_state('wiki:slot_3_occupied')",
+                    "empty_slot_4": "!q.block_state('wiki:slot_4_occupied')",
+                    "empty_slot_5": "!q.block_state('wiki:slot_5_occupied')",
+                    "occupied_slot_0": "q.block_state('wiki:slot_0_occupied')",
+                    "occupied_slot_1": "q.block_state('wiki:slot_1_occupied')",
+                    "occupied_slot_2": "q.block_state('wiki:slot_2_occupied')",
+                    "occupied_slot_3": "q.block_state('wiki:slot_3_occupied')",
+                    "occupied_slot_4": "q.block_state('wiki:slot_4_occupied')",
+                    "occupied_slot_5": "q.block_state('wiki:slot_5_occupied')"
+                }
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "stripped_bamboo_block_top"
+                },
+                // Material instances defined in model:
+                "side": {
+                    "texture": "stripped_bamboo_block"
+                },
+                "empty_slot": {
+                    "texture": "pigeonholes_empty"
+                },
+                "occupied_slot": {
+                    "texture": "pigeonholes_occupied"
+                }
+            }
         },
-        "empty_slot": {
-          "texture": "pigeonholes_empty"
-        },
-        "occupied_slot": {
-          "texture": "pigeonholes_occupied"
-        }
-      },
-      "minecraft:on_interact": {
-        // Only allow interaction with the front face
-        "condition": "(q.block_face == 2 && q.block_state('minecraft:cardinal_direction') == 'north') || (q.block_face == 3 && q.block_state('minecraft:cardinal_direction') == 'south') || (q.block_face == 4 && q.block_state('minecraft:cardinal_direction') == 'west') || (q.block_face == 5 && q.block_state('minecraft:cardinal_direction') == 'east')",
-        "event": "wiki:on_insert"
-      }
-    },
-    "events": {
-      "wiki:on_insert": {
-        "sequence": [
-          {
-            "condition": "q.is_item_name_any('slot.weapon.mainhand', 'minecraft:paper')",
-            "decrement_stack": {}
-          }
+        "permutations": [
+            // Facing north
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, 0, 0] }
+                }
+            },
+            // Facing west
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, 90, 0] }
+                }
+            },
+            // Facing south
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, 180, 0] }
+                }
+            },
+            // Facing east
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, -90, 0] }
+                }
+            }
         ]
-      }
-    },
-    "permutations": [
-      // Facing north
-      {
-        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, 0, 0] }
-        }
-      },
-      // Facing west
-      {
-        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, 90, 0] }
-        }
-      },
-      // Facing south
-      {
-        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, 180, 0] }
-        }
-      },
-      // Facing east
-      {
-        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, -90, 0] }
-        }
-      }
-    ]
-  }
+    }
 }
