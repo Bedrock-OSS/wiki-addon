@@ -1,26 +1,26 @@
 {
-  "format_version": 2,
-  "metadata": {
-    "authors": ["Bedrock-OSS"]
-  },
-  "header": {
-    "name": "Precise Rotation Example",
-    "description": "Adds a rotatable shell block to demonstrate custom head-like rotation. Example from wiki.bedrock.dev!",
-    "uuid": "a1fdd80f-7109-42f3-918a-9c82334dce89",
-    "version": [1, 0, 0],
-    "min_engine_version": [1, 20, 30]
-  },
-  "modules": [
-    {
-      "type": "resources",
-      "uuid": "fd497be0-2023-4f13-92f0-e212e128aef4",
-      "version": [1, 0, 0]
-    }
-  ],
-  "dependencies": [
-    {
-      "uuid": "a80a2439-9670-4498-981d-700bfc7c694c",
-      "version": [1, 0, 0]
-    }
-  ]
+    "format_version": 2,
+    "header": {
+        "name": "Precise Rotation Example",
+        "description": "Adds a rotatable shell block to demonstrate custom head-like rotation. Example from wiki.bedrock.dev!",
+        "uuid": "a1fdd80f-7109-42f3-918a-9c82334dce89",
+        "version": "2.0.0",
+        "min_engine_version": [1, 21, 20]
+    },
+    "metadata": {
+        "authors": ["Bedrock-OSS", "QuazChick"]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "fd497be0-2023-4f13-92f0-e212e128aef4",
+            "version": "2.0.0"
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "a80a2439-9670-4498-981d-700bfc7c694c",
+            "version": "2.0.0"
+        }
+    ]
 }

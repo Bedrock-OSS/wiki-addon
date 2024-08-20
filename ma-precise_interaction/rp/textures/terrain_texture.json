@@ -1,23 +1,23 @@
 {
-  "padding": 8,
-  "num_mip_levels": 4,
-  "resource_pack_name": "precise-interaction",
-  "texture_name": "atlas.terrain",
-  "texture_data": {
-    "pigeonholes_empty": {
-      "textures": "textures/blocks/pigeonholes_empty"
-    },
-    "pigeonholes_occupied": {
-      "textures": "textures/blocks/pigeonholes_occupied"
-    },
-    "double_flower_pot_dirt": {
-      "textures": {
-        "tint_color": "#999999",
-        "path": "textures/blocks/dirt"
-      }
-    },
-    "double_flower_pot_handle": {
-      "textures": "textures/blocks/double_pot_handle"
+    "resource_pack_name": "precise-interaction",
+    "texture_name": "atlas.terrain",
+    "num_mip_levels": 4,
+    "padding": 8,
+    "texture_data": {
+        "pigeonholes_empty": {
+            "textures": "textures/blocks/pigeonholes_empty"
+        },
+        "pigeonholes_occupied": {
+            "textures": "textures/blocks/pigeonholes_occupied"
+        },
+        "double_flower_pot_dirt": {
+            "textures": {
+                "path": "textures/blocks/dirt",
+                "tint_color": "#999999"
+            }
+        },
+        "double_flower_pot_handle": {
+            "textures": "textures/blocks/double_pot_handle"
+        }
     }
-  }
 }

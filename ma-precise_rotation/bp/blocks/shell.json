@@ -1,97 +1,87 @@
 {
-  "format_version": "1.20.30",
-  "minecraft:block": {
-    "description": {
-      "identifier": "wiki:shell",
-      "menu_category": {
-        "category": "nature"
-      },
-      "traits": {
-        "minecraft:placement_position": {
-          "enabled_states": ["minecraft:block_face"]
-        }
-      },
-      "states": {
-        "wiki:rotation": {
-          "values": { "min": 0, "max": 15 }
-        }
-      }
-    },
-    "components": {
-      "minecraft:collision_box": {
-        "origin": [-3, 0, -3],
-        "size": [6, 3, 6]
-      },
-      "minecraft:selection_box": {
-        "origin": [-3, 0, -3],
-        "size": [6, 3, 6]
-      },
-      "minecraft:geometry": {
-        "identifier": "geometry.shell",
-        "bone_visibility": {
-          "up_0": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('wiki:rotation'), 4)",
-          "up_22_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('wiki:rotation') - 1, 4)",
-          "up_45": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('wiki:rotation') - 2, 4)",
-          "up_67_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('wiki:rotation') - 3, 4)",
-          "side": "q.block_state('minecraft:block_face') != 'up'"
-        }
-      },
-      "minecraft:material_instances": {
-        "*": {
-          "texture": "shell"
-        }
-      },
-      "minecraft:placement_filter": {
-        "conditions": [
-          {
-            "allowed_faces": ["up", "side"]
-          }
+    "format_version": "1.21.20",
+    "minecraft:block": {
+        "description": {
+            "identifier": "wiki:shell",
+            "menu_category": {
+                "category": "nature"
+            },
+            "traits": {
+                "minecraft:placement_position": {
+                    "enabled_states": ["minecraft:block_face"]
+                }
+            },
+            "states": {
+                "wiki:rotation": {
+                    "values": { "min": 0, "max": 15 }
+                }
+            }
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "origin": [-3, 0, -3],
+                "size": [6, 3, 6]
+            },
+            "minecraft:selection_box": {
+                "origin": [-3, 0, -3],
+                "size": [6, 3, 6]
+            },
+            "minecraft:geometry": {
+                "identifier": "geometry.shell",
+                "bone_visibility": {
+                    "up_0": "q.block_state('minecraft:block_face') == 'up' && math.mod(q.block_state('wiki:rotation'), 4) == 0",
+                    "up_22_5": "q.block_state('minecraft:block_face') == 'up' && math.mod(q.block_state('wiki:rotation'), 4) == 1",
+                    "up_45": "q.block_state('minecraft:block_face') == 'up' && math.mod(q.block_state('wiki:rotation'), 4) == 2",
+                    "up_67_5": "q.block_state('minecraft:block_face') == 'up' && math.mod(q.block_state('wiki:rotation'), 4) == 3",
+                    "side": "q.block_state('minecraft:block_face') != 'up'"
+                }
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "shell"
+                }
+            },
+            "minecraft:placement_filter": {
+                "conditions": [
+                    {
+                        "allowed_faces": ["up", "side"]
+                    }
+                ]
+            },
+            "minecraft:custom_components": ["wiki:shell_rotation"]
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('wiki:rotation') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, -90, 0] }
+                }
+            },
+            {
+                "condition": "q.block_state('wiki:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south' || q.block_state('minecraft:block_face') == 'down'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, 180, 0] }
+                }
+            },
+            {
+                "condition": "q.block_state('wiki:rotation') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [0, 90, 0] }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:block_face') != 'up'",
+                "components": {
+                    "minecraft:collision_box": {
+                        "origin": [-3, 5, 5],
+                        "size": [6, 6, 3]
+                    },
+                    "minecraft:selection_box": {
+                        "origin": [-3, 5, 5],
+                        "size": [6, 6, 3]
+                    }
+                }
+            }
         ]
-      },
-      "minecraft:on_player_placing": {
-        "condition": "q.block_face == 1",
-        "event": "wiki:set_rotation"
-      }
-    },
-    "events": {
-      "wiki:set_rotation": {
-        "set_block_state": {
-          "wiki:rotation": "t.positive_head_rot = q.head_y_rotation(0) + 360 * (q.head_y_rotation(0) != math.abs(q.head_y_rotation(0))); t.block_rotation = math.round(t.positive_head_rot / 22.5); return t.block_rotation != 16 ? t.block_rotation;"
-        }
-      }
-    },
-    "permutations": [
-      {
-        "condition": "q.block_state('wiki:rotation') >= 4 || q.block_state('minecraft:block_face') == 'east'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, -90, 0] }
-        }
-      },
-      {
-        "condition": "q.block_state('wiki:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, 180, 0] }
-        }
-      },
-      {
-        "condition": "q.block_state('wiki:rotation') >= 12 || q.block_state('minecraft:block_face') == 'west'",
-        "components": {
-          "minecraft:transformation": { "rotation": [0, 90, 0] }
-        }
-      },
-      {
-        "condition": "q.block_state('minecraft:block_face') != 'up'",
-        "components": {
-          "minecraft:collision_box": {
-            "origin": [-3, 5, 5],
-            "size": [6, 6, 3]
-          },
-          "minecraft:selection_box": {
-            "origin": [-3, 5, 5],
-            "size": [6, 6, 3]
-          }
-        }
-      }
-    ]
-  }
+    }
 }
