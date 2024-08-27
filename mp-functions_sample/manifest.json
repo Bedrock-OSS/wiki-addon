@@ -5,7 +5,7 @@
         "name": "§l§fSample §r§b[FP]",
         "uuid": "6a513b98-780d-45fd-9c53-070e8867d7ed",
         "version": [ 1, 0, 0 ],
-        "min_engine_version": [ 1, 19, 73 ]
+        "min_engine_version": [ 1, 21, 22 ]
     },
     "modules": [
         {
