@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.20",
+    "format_version": "1.21.60",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:pigeonholes",
@@ -54,10 +54,10 @@
                     "texture": "stripped_bamboo_block"
                 },
                 "empty_slot": {
-                    "texture": "pigeonholes_empty"
+                    "texture": "wiki:pigeonholes_empty"
                 },
                 "occupied_slot": {
-                    "texture": "pigeonholes_occupied"
+                    "texture": "wiki:pigeonholes_occupied"
                 }
             }
         },

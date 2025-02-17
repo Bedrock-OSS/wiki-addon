@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.20",
+    "format_version": "1.21.60",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:custom_crop",
@@ -33,7 +33,7 @@
                 "components": {
                     // Loot table for when the crop is not fully grown. Vanilla crops only drop seeds when young.
                     "minecraft:loot": "loot_tables/blocks/custom_crop_young.json",
-                    // Trigger growth on random ticks and when interacting with bonemeal.
+                    // Trigger growth on random ticks and when interacting with bone meal (only active when the block isn't fully grown).
                     "minecraft:custom_components": ["wiki:custom_crop_growth"]
                 }
             },
@@ -42,8 +42,8 @@
                 "components": {
                     "minecraft:material_instances": {
                         "*": {
-                            "texture": "custom_crop_0",
-                            "render_method": "alpha_test",
+                            "texture": "wiki:custom_crop_0",
+                            "render_method": "alpha_test_single_sided",
                             "ambient_occlusion": false,
                             "face_dimming": false
                         }
@@ -82,8 +82,8 @@
                 "components": {
                     "minecraft:material_instances": {
                         "*": {
-                            "texture": "custom_crop_1",
-                            "render_method": "alpha_test",
+                            "texture": "wiki:custom_crop_1",
+                            "render_method": "alpha_test_single_sided",
                             "ambient_occlusion": false,
                             "face_dimming": false
                         }
@@ -113,8 +113,8 @@
                 "components": {
                     "minecraft:material_instances": {
                         "*": {
-                            "texture": "custom_crop_2",
-                            "render_method": "alpha_test",
+                            "texture": "wiki:custom_crop_2",
+                            "render_method": "alpha_test_single_sided",
                             "ambient_occlusion": false,
                             "face_dimming": false
                         }
@@ -144,8 +144,8 @@
                 "components": {
                     "minecraft:material_instances": {
                         "*": {
-                            "texture": "custom_crop_3",
-                            "render_method": "alpha_test",
+                            "texture": "wiki:custom_crop_3",
+                            "render_method": "alpha_test_single_sided",
                             "ambient_occlusion": false,
                             "face_dimming": false
                         }

@@ -3,8 +3,14 @@ import SelectionBoxes from "../utils/selection_boxes"; // Import the SelectionBo
 
 // Support orientation along both horizontal axes
 const pots = {
-    x: new SelectionBoxes({ origin: [-7, 0, -3], size: [6, 6, 6] }, { origin: [1, 0, -3], size: [6, 6, 6] }),
-    z: new SelectionBoxes({ origin: [-3, 0, -7], size: [6, 6, 6] }, { origin: [-3, 0, 1], size: [6, 6, 6] }),
+    x: new SelectionBoxes(
+        { origin: [-7, 0, -3], size: [6, 6, 6] },
+        { origin: [1, 0, -3], size: [6, 6, 6] }
+    ),
+    z: new SelectionBoxes(
+        { origin: [-3, 0, -7], size: [6, 6, 6] },
+        { origin: [-3, 0, 1], size: [6, 6, 6] }
+    ),
 };
 
 // The state value and sound associated with each plant
@@ -19,23 +25,29 @@ const plants = {
     },
 };
 
-const getAxis = (direction) => (direction === "west" || direction === "east" ? "z" : "x");
+const getAxis = (direction) =>
+    direction === "west" || direction === "east" ? "z" : "x";
 
 // Get the selected pot for the appropriate axis
 function getSelectedPot(block, faceLocation) {
-    const direction = block.permutation.getState("minecraft:cardinal_direction");
+    const direction = block.permutation.getState(
+        "minecraft:cardinal_direction"
+    );
     const axis = getAxis(direction);
 
     return pots[axis].getSelected(faceLocation);
 }
 
-const isPotOccupied = (block, pot) => block.permutation.getState(`wiki:pot_${pot}_plant`) !== "none";
+const isPotOccupied = (block, pot) =>
+    block.permutation.getState(`wiki:pot_${pot}_plant`) !== "none";
 
 const setPotPlant = (block, pot, plant) =>
-    block.setPermutation(block.permutation.withState(`wiki:pot_${pot}_plant`, plant));
+    block.setPermutation(
+        block.permutation.withState(`wiki:pot_${pot}_plant`, plant)
+    );
 
 /** @type {import("@minecraft/server").BlockCustomComponent} */
-const DoubleFlowerPotBlockComponent = {
+const BlockDoubleFlowerPotComponent = {
     onPlayerInteract(event) {
         const { block, dimension, faceLocation, player } = event;
         if (!player) return;
@@ -66,8 +78,12 @@ const DoubleFlowerPotBlockComponent = {
             setPotPlant(block, selectedPot, plant.value);
             dimension.playSound(plant.sound, block.center(), { volume: 0.5 });
         } else if (!mainhand.hasItem() && isPotOccupied(block, selectedPot)) {
-            const plantValue = block.permutation.getState(`wiki:pot_${selectedPot}_plant`);
-            const plantId = Object.keys(plants).find((key) => plants[key].value === plantValue);
+            const plantValue = block.permutation.getState(
+                `wiki:pot_${selectedPot}_plant`
+            );
+            const plantId = Object.keys(plants).find(
+                (key) => plants[key].value === plantValue
+            );
 
             setPotPlant(block, selectedPot, "none");
             dimension.playSound("random.pop", block.center());
@@ -79,7 +95,10 @@ const DoubleFlowerPotBlockComponent = {
 };
 
 world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent("wiki:double_flower_pot", DoubleFlowerPotBlockComponent);
+    blockComponentRegistry.registerCustomComponent(
+        "wiki:double_flower_pot",
+        BlockDoubleFlowerPotComponent
+    );
 });
 
 // -------------------------------
@@ -90,14 +109,18 @@ function releasePlants({ block, destroyedBlockPermutation, dimension }) {
 
     // Array of plant state values e.g. ["cactus", "dandelion"]
     const storedPlants = Object.entries(states)
-        .filter(([state, value]) => state.startsWith("wiki:pot") && value !== "none")
+        .filter(
+            ([state, value]) => state.startsWith("wiki:pot") && value !== "none"
+        )
         .map(([state, value]) => value);
 
     if (storedPlants.length === 0) return;
 
     // Create an item entity for every potted plant
     for (const plant of storedPlants) {
-        const plantId = Object.keys(plants).find((key) => plants[key].value === plant);
+        const plantId = Object.keys(plants).find(
+            (key) => plants[key].value === plant
+        );
 
         dimension.spawnItem(new ItemStack(plantId), block.center());
     }

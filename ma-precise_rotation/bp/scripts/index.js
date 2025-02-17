@@ -9,21 +9,29 @@ function getPreciseRotation(playerYRotation) {
 }
 
 /** @type {import("@minecraft/server").BlockCustomComponent} */
-const ShellRotationBlockComponent = {
+const BlockShellRotationComponent = {
     beforeOnPlayerPlace(event) {
         const { player } = event;
         if (!player) return;
 
-        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
+        const blockFace = event.permutationToPlace.getState(
+            "minecraft:block_face"
+        );
         if (blockFace !== "up") return;
 
         const playerYRotation = player.getRotation().y;
         const rotation = getPreciseRotation(playerYRotation);
 
-        event.permutationToPlace = event.permutationToPlace.withState("wiki:rotation", rotation);
+        event.permutationToPlace = event.permutationToPlace.withState(
+            "wiki:rotation",
+            rotation
+        );
     },
 };
 
 world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent("wiki:shell_rotation", ShellRotationBlockComponent);
+    blockComponentRegistry.registerCustomComponent(
+        "wiki:shell_rotation",
+        BlockShellRotationComponent
+    );
 });

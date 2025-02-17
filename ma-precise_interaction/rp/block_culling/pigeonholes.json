@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.20",
+    "format_version": "1.21.60",
     "minecraft:block_culling_rules": {
         "description": {
             "identifier": "wiki:pigeonholes_culling"
