@@ -4,8 +4,8 @@
         "name": "Precise Interaction Example",
         "description": "A pack to demonstrate precise block interaction. Example from wiki.bedrock.dev!",
         "uuid": "356dbd08-88ab-4df1-a455-60d917f68550",
-        "version": "2.0.0",
-        "min_engine_version": [1, 21, 20]
+        "version": "2.1.0",
+        "min_engine_version": [1, 21, 60]
     },
     "metadata": {
         "authors": ["Bedrock-OSS", "QuazChick"]
@@ -14,13 +14,13 @@
         {
             "type": "resources",
             "uuid": "c3938221-b461-495f-8b83-21ac1a42d9d5",
-            "version": "2.0.0"
+            "version": "2.1.0"
         }
     ],
     "dependencies": [
         {
             "uuid": "30a07bd6-8efb-4650-bad6-41ffbbdff94a",
-            "version": "2.0.0"
+            "version": "2.1.0"
         }
     ]
 }

@@ -11,15 +11,22 @@ const slots = new FaceSelectionPlains(
     { origin: [11, 8], size: [5, 8] }
 );
 
-const isFrontFace = (block, face) => block.permutation.getState("minecraft:cardinal_direction") === face.toLowerCase();
+const isFrontFace = (block, face) =>
+    block.permutation.getState("minecraft:cardinal_direction") ===
+    face.toLowerCase();
 
-const isSlotOccupied = (block, slot) => block.permutation.getState(`wiki:slot_${slot}_occupied`);
+const isSlotOccupied = (block, slot) =>
+    block.permutation.getState(`wiki:slot_${slot}_occupied`);
 
 const occupySlot = (block, slot) =>
-    block.setPermutation(block.permutation.withState(`wiki:slot_${slot}_occupied`, true));
+    block.setPermutation(
+        block.permutation.withState(`wiki:slot_${slot}_occupied`, true)
+    );
 
 const emptySlot = (block, slot) =>
-    block.setPermutation(block.permutation.withState(`wiki:slot_${slot}_occupied`, false));
+    block.setPermutation(
+        block.permutation.withState(`wiki:slot_${slot}_occupied`, false)
+    );
 
 function handleInteract({ block, face, faceLocation, dimension, player }) {
     if (!player || !isFrontFace(block, face)) return;
@@ -33,11 +40,15 @@ function handleInteract({ block, face, faceLocation, dimension, player }) {
         z: faceLocation.z - block.location.z,
     };
 
-    const selectedSlot = slots.getSelected({ face, faceLocation: relativeFaceLocation });
+    const selectedSlot = slots.getSelected({
+        face,
+        faceLocation: relativeFaceLocation,
+    });
     if (selectedSlot === undefined) return;
 
     const mainhand = equippable.getEquipmentSlot(EquipmentSlot.Mainhand);
-    const isHoldingPaper = mainhand.hasItem() && mainhand.typeId === "minecraft:paper";
+    const isHoldingPaper =
+        mainhand.hasItem() && mainhand.typeId === "minecraft:paper";
 
     if (isHoldingPaper && !isSlotOccupied(block, selectedSlot)) {
         if (player.getGameMode() !== GameMode.creative) {
@@ -52,7 +63,9 @@ function handleInteract({ block, face, faceLocation, dimension, player }) {
 
         const itemLocation = { ...faceLocation };
         itemLocation.y -= 0.5;
-        dimension.spawnItem(new ItemStack("minecraft:paper"), itemLocation).clearVelocity();
+        dimension
+            .spawnItem(new ItemStack("minecraft:paper"), itemLocation)
+            .clearVelocity();
 
         dimension.playSound("pickup.chiseled_bookshelf", block.center());
     }
@@ -75,11 +88,14 @@ function releasePaper({ block, destroyedBlockPermutation, dimension }) {
 }
 
 /** @type {import("@minecraft/server").BlockCustomComponent} */
-const PigeonholesStorageBlockComponent = {
+const BlockPigeonholesStorageComponent = {
     onPlayerInteract: handleInteract,
     onPlayerDestroy: releasePaper,
 };
 
 world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent("wiki:pigeonholes_storage", PigeonholesStorageBlockComponent);
+    blockComponentRegistry.registerCustomComponent(
+        "wiki:pigeonholes_storage",
+        BlockPigeonholesStorageComponent
+    );
 });

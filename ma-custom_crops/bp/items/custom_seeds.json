@@ -1,15 +1,15 @@
 {
-    "format_version": "1.21.10",
+    "format_version": "1.21.60",
     "minecraft:item": {
         "description": {
             "identifier": "wiki:custom_seeds", // Make sure this is different from your crop's ID.
             "menu_category": {
                 "category": "nature",
-                "group": "itemGroup.name.seed"
+                "group": "minecraft:itemGroup.name.seed"
             }
         },
         "components": {
-            "minecraft:icon": "custom_seeds",
+            "minecraft:icon": "wiki:custom_seeds",
             "minecraft:block_placer": {
                 "block": "wiki:custom_crop" // The block this item is placing.
             }

@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.20",
+    "format_version": "1.21.60",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:double_flower_pot",
@@ -45,12 +45,12 @@
                 },
                 // Material instances defined in model:
                 "dirt": {
-                    "texture": "double_flower_pot_dirt", // Apply a darker tint to the dirt texture to replicate vanilla potted dirt
+                    "texture": "wiki:double_flower_pot_dirt", // Apply a darker tint to the dirt texture to replicate vanilla potted dirt
                     "render_method": "alpha_test",
                     "ambient_occlusion": false
                 },
                 "handle": {
-                    "texture": "double_flower_pot_handle",
+                    "texture": "wiki:double_flower_pot_handle",
                     "render_method": "alpha_test"
                 },
                 "dandelion": {

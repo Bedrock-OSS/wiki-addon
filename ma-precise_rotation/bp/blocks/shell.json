@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.20",
+    "format_version": "1.21.60",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:shell",
@@ -38,7 +38,7 @@
             },
             "minecraft:material_instances": {
                 "*": {
-                    "texture": "shell"
+                    "texture": "wiki:shell"
                 }
             },
             "minecraft:placement_filter": {
