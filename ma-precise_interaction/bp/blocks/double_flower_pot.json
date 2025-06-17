@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.60",
+    "format_version": "1.21.90",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:double_flower_pot",
@@ -17,7 +17,7 @@
             }
         },
         "components": {
-            "minecraft:custom_components": ["wiki:double_flower_pot"],
+            "wiki:double_flower_pot": {},
             "minecraft:collision_box": {
                 "origin": [-7, 0, -3],
                 "size": [14, 6, 6]

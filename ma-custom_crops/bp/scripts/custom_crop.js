@@ -1,4 +1,4 @@
-import { EquipmentSlot, GameMode, world } from "@minecraft/server";
+import { EquipmentSlot, GameMode, system } from "@minecraft/server";
 
 /**
  * @param {number} min The minimum integer
@@ -8,20 +8,23 @@ import { EquipmentSlot, GameMode, world } from "@minecraft/server";
 const randomInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
-const maxGrowth = 7;
-
 /** @type {import("@minecraft/server").BlockCustomComponent} */
-const BlockCustomCropGrowthComponent = {
-    onRandomTick({ block }) {
-        const growthChance = 1 / 3;
+const BlockGrowableComponent = {
+    onRandomTick({ block }, { params }) {
+        const growthState = params.growth_state;
+        const growthChance = params.growth_chance / 100;
+
         if (Math.random() > growthChance) return;
 
-        const growth = block.permutation.getState("wiki:growth");
+        const growth = block.permutation.getState(growthState);
         block.setPermutation(
-            block.permutation.withState("wiki:growth", growth + 1)
+            block.permutation.withState(growthState, growth + 1)
         );
     },
-    onPlayerInteract({ block, dimension, player }) {
+    onPlayerInteract({ block, dimension, player }, { params }) {
+        const growthState = params.growth_state;
+        const maxGrowth = params.max_growth;
+
         if (!player) return;
 
         const equippable = player.getComponent("minecraft:equippable");
@@ -31,16 +34,18 @@ const BlockCustomCropGrowthComponent = {
         if (!mainhand.hasItem() || mainhand.typeId !== "minecraft:bone_meal")
             return;
 
-        if (player.getGameMode() === GameMode.creative) {
+        if (player.getGameMode() === GameMode.Creative) {
             // Grow crop fully
-            block.setPermutation(block.permutation.withState("wiki:growth", 7));
+            block.setPermutation(
+                block.permutation.withState(growthState, maxGrowth)
+            );
         } else {
-            let growth = block.permutation.getState("wiki:growth");
+            let growth = block.permutation.getState(growthState);
 
             // Add random amount of growth
             growth += randomInt(1, maxGrowth - growth);
             block.setPermutation(
-                block.permutation.withState("wiki:growth", growth)
+                block.permutation.withState(growthState, growth)
             );
 
             // Decrement stack
@@ -58,9 +63,9 @@ const BlockCustomCropGrowthComponent = {
     },
 };
 
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
-        "wiki:custom_crop_growth",
-        BlockCustomCropGrowthComponent
+        "wiki:growable",
+        BlockGrowableComponent
     );
 });

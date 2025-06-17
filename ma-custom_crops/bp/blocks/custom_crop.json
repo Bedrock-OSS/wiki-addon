@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.60",
+    "format_version": "1.21.90",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:custom_crop",
@@ -13,10 +13,17 @@
             }
         },
         "components": {
-            "minecraft:flammable": true,
             "minecraft:collision_box": false,
-            "minecraft:geometry": "geometry.crop",
             "minecraft:light_dampening": 0,
+            "minecraft:geometry": "geometry.crop", // Model provided in previous step.
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "wiki:custom_crop_0",
+                    "render_method": "alpha_test_single_sided",
+                    "ambient_occlusion": false,
+                    "face_dimming": false
+                }
+            },
             // Break the crop if it isn't placed on farmland.
             "minecraft:placement_filter": {
                 "conditions": [
@@ -26,7 +33,7 @@
                     }
                 ]
             },
-            // Break the crop when water flows into it
+            // Break the crop when water flows into it.
             "minecraft:liquid_detection": {
                 "detection_rules": [
                     {
@@ -34,6 +41,10 @@
                         "on_liquid_touches": "broken"
                     }
                 ]
+            },
+            // Break the crop when it is pushed by a piston
+            "minecraft:movable": {
+                "movement_type": "popped"
             }
         },
         "permutations": [
@@ -43,19 +54,10 @@
                     // Loot table for when the crop is not fully grown. Vanilla crops only drop seeds when young.
                     "minecraft:loot": "loot_tables/blocks/custom_crop_young.json",
                     // Trigger growth on random ticks and when interacting with bone meal (only active when the block isn't fully grown).
-                    "minecraft:custom_components": ["wiki:custom_crop_growth"]
-                }
-            },
-            {
-                "condition": "q.block_state('wiki:growth') >= 0",
-                "components": {
-                    "minecraft:material_instances": {
-                        "*": {
-                            "texture": "wiki:custom_crop_0",
-                            "render_method": "alpha_test_single_sided",
-                            "ambient_occlusion": false,
-                            "face_dimming": false
-                        }
+                    "wiki:growable": {
+                        "growth_state": "wiki:growth",
+                        "growth_chance": 50, // 50% chance to grow on each random tick
+                        "max_growth": 7
                     }
                 }
             },
@@ -74,15 +76,6 @@
                     "minecraft:selection_box": {
                         "origin": [-8, 0, -8],
                         "size": [16, 3.2, 16]
-                    }
-                }
-            },
-            {
-                "condition": "q.block_state('wiki:growth') == 6",
-                "components": {
-                    "minecraft:selection_box": {
-                        "origin": [-8, 0, -8],
-                        "size": [16, 11.2, 16]
                     }
                 }
             },
@@ -145,6 +138,15 @@
                     "minecraft:selection_box": {
                         "origin": [-8, 0, -8],
                         "size": [16, 9.6, 16]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('wiki:growth') == 6",
+                "components": {
+                    "minecraft:selection_box": {
+                        "origin": [-8, 0, -8],
+                        "size": [16, 11.2, 16]
                     }
                 }
             },
