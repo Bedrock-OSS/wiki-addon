@@ -1,8 +1,6 @@
 {
     "resource_pack_name": "precise-interaction",
     "texture_name": "atlas.terrain",
-    "num_mip_levels": 4,
-    "padding": 8,
     "texture_data": {
         "wiki:pigeonholes_empty": {
             "textures": "textures/blocks/pigeonholes_empty"

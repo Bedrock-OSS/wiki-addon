@@ -1,8 +1,6 @@
 {
     "resource_pack_name": "precise-rotation",
     "texture_name": "atlas.terrain",
-    "num_mip_levels": 4,
-    "padding": 8,
     "texture_data": {
         "wiki:shell": {
             "textures": "textures/blocks/shell"

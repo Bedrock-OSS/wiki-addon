@@ -1,5 +1,5 @@
-import { world, ItemStack, EquipmentSlot, GameMode } from "@minecraft/server";
-import SelectionBoxes from "../utils/selection_boxes"; // Import the SelectionBoxes class to use it
+import { system, ItemStack, EquipmentSlot, GameMode } from "@minecraft/server";
+import SelectionBoxes from "../utilities/selection_boxes"; // Import the SelectionBoxes class to use it
 
 // Support orientation along both horizontal axes
 const pots = {
@@ -48,8 +48,7 @@ const setPotPlant = (block, pot, plant) =>
 
 /** @type {import("@minecraft/server").BlockCustomComponent} */
 const BlockDoubleFlowerPotComponent = {
-    onPlayerInteract(event) {
-        const { block, dimension, faceLocation, player } = event;
+    onPlayerInteract({ block, dimension, faceLocation, player }) {
         if (!player) return;
 
         const equippable = player.getComponent("minecraft:equippable");
@@ -57,13 +56,7 @@ const BlockDoubleFlowerPotComponent = {
 
         const mainhand = equippable.getEquipmentSlot(EquipmentSlot.Mainhand);
 
-        const relativeFaceLocation = {
-            x: faceLocation.x - block.location.x,
-            y: faceLocation.y - block.location.y,
-            z: faceLocation.z - block.location.z,
-        };
-
-        const selectedPot = getSelectedPot(block, relativeFaceLocation);
+        const selectedPot = getSelectedPot(block, faceLocation);
         if (selectedPot === undefined) return;
 
         if (mainhand.hasItem() && !isPotOccupied(block, selectedPot)) {
@@ -91,10 +84,10 @@ const BlockDoubleFlowerPotComponent = {
             mainhand.setItem(new ItemStack(plantId));
         }
     },
-    onPlayerDestroy: releasePlants,
+    onPlayerBreak: releasePlants,
 };
 
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "wiki:double_flower_pot",
         BlockDoubleFlowerPotComponent
@@ -104,8 +97,8 @@ world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
 // -------------------------------
 //  Release plants on destruction
 // -------------------------------
-function releasePlants({ block, destroyedBlockPermutation, dimension }) {
-    const states = destroyedBlockPermutation.getAllStates();
+function releasePlants({ block, brokenBlockPermutation, dimension }) {
+    const states = brokenBlockPermutation.getAllStates();
 
     // Array of plant state values e.g. ["cactus", "dandelion"]
     const storedPlants = Object.entries(states)

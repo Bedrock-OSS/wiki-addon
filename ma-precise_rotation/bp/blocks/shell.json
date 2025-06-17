@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.60",
+    "format_version": "1.21.90",
     "minecraft:block": {
         "description": {
             "identifier": "wiki:shell",
@@ -48,7 +48,7 @@
                     }
                 ]
             },
-            "minecraft:custom_components": ["wiki:shell_rotation"]
+            "wiki:shell_rotation": {}
         },
         "permutations": [
             {
@@ -58,7 +58,7 @@
                 }
             },
             {
-                "condition": "q.block_state('wiki:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south' || q.block_state('minecraft:block_face') == 'down'",
+                "condition": "q.block_state('wiki:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south'",
                 "components": {
                     "minecraft:transformation": { "rotation": [0, 180, 0] }
                 }

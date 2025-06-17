@@ -4,20 +4,21 @@
         "name": "Custom Crops Example",
         "description": "A pack to demonstrate custom crops. Example from wiki.bedrock.dev!",
         "uuid": "4aa947fb-1a1e-4fe2-9af4-76dd2b00fd30",
-        "version": "2.1.0",
-        "min_engine_version": [1, 21, 60]
+        "version": "3.0.0",
+        "min_engine_version": [1, 21, 90]
     },
     "metadata": {
-        "authors": ["Bedrock OSS", "QuazChick"]
+        "authors": ["Bedrock OSS", "QuazChick"],
+        "url": "https://wiki.bedrock.dev/blocks/custom-crops"
     },
     "modules": [
         {
             "type": "resources",
             "uuid": "7bef3c33-b4d9-480e-b250-58938251cc4a",
-            "version": "2.1.0"
+            "version": "3.0.0"
         }
     ],
     "dependencies": [
-        { "uuid": "3e90193d-591f-4ed1-b95a-025263cc0530", "version": "2.1.0" }
+        { "uuid": "3e90193d-591f-4ed1-b95a-025263cc0530", "version": "3.0.0" }
     ]
 }

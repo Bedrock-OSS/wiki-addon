@@ -1,5 +1,5 @@
-import { world, ItemStack, EquipmentSlot, GameMode } from "@minecraft/server";
-import FaceSelectionPlains from "../utils/face_selection_plains"; // Import the FaceSelectionPlains class to use it
+import { system, EquipmentSlot, GameMode, ItemStack } from "@minecraft/server";
+import FaceSelectionPlains from "../utilities/face_selection_plains"; // Import the FaceSelectionPlains class to use it
 
 // Slot bounds
 const slots = new FaceSelectionPlains(
@@ -34,16 +34,7 @@ function handleInteract({ block, face, faceLocation, dimension, player }) {
     const equippable = player.getComponent("minecraft:equippable");
     if (!equippable) return;
 
-    const relativeFaceLocation = {
-        x: faceLocation.x - block.location.x,
-        y: faceLocation.y - block.location.y,
-        z: faceLocation.z - block.location.z,
-    };
-
-    const selectedSlot = slots.getSelected({
-        face,
-        faceLocation: relativeFaceLocation,
-    });
+    const selectedSlot = slots.getSelected({ face, faceLocation });
     if (selectedSlot === undefined) return;
 
     const mainhand = equippable.getEquipmentSlot(EquipmentSlot.Mainhand);
@@ -90,10 +81,10 @@ function releasePaper({ block, destroyedBlockPermutation, dimension }) {
 /** @type {import("@minecraft/server").BlockCustomComponent} */
 const BlockPigeonholesStorageComponent = {
     onPlayerInteract: handleInteract,
-    onPlayerDestroy: releasePaper,
+    onPlayerBreak: releasePaper,
 };
 
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "wiki:pigeonholes_storage",
         BlockPigeonholesStorageComponent

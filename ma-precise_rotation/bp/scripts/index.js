@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { system } from "@minecraft/server";
 
 /** @param {number} playerYRotation */
 function getPreciseRotation(playerYRotation) {
@@ -29,7 +29,7 @@ const BlockShellRotationComponent = {
     },
 };
 
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "wiki:shell_rotation",
         BlockShellRotationComponent
