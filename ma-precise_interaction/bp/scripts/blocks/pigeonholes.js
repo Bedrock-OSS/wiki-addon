@@ -52,8 +52,12 @@ function handleInteract({ block, face, faceLocation, dimension, player }) {
     } else if (isSlotOccupied(block, selectedSlot)) {
         emptySlot(block, selectedSlot);
 
-        const itemLocation = { ...faceLocation };
-        itemLocation.y -= 0.5;
+        const itemLocation = {
+            x: block.location.x + faceLocation.x,
+            y: block.location.y + faceLocation.y - 0.5,
+            z: block.location.z + faceLocation.z,
+        };
+
         dimension
             .spawnItem(new ItemStack("minecraft:paper"), itemLocation)
             .clearVelocity();
@@ -65,8 +69,8 @@ function handleInteract({ block, face, faceLocation, dimension, player }) {
 // ------------------------------
 //  Release paper on destruction
 // ------------------------------
-function releasePaper({ block, destroyedBlockPermutation, dimension }) {
-    const states = destroyedBlockPermutation.getAllStates();
+function releasePaper({ block, brokenBlockPermutation, dimension }) {
+    const states = brokenBlockPermutation.getAllStates();
 
     for (const state in states) {
         const value = states[state];
