@@ -1,5 +1,6 @@
 {
     "name": "VR Edit Model",
     "type": "mcpack",
+    "mcpack_type": "rp",
     "tags": ["vr"]
 }

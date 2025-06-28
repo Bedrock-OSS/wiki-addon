@@ -1,5 +1,6 @@
 {
     "name": "Functions Sample",
     "type": "mcpack",
+    "mcpack_type": "bp",
     "tags": ["functions"]
 }

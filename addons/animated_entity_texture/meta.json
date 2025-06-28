@@ -1,5 +1,6 @@
 {
     "name": "Animated Entity Texture",
     "type": "mcpack",
+    "mcpack_type": "rp",
     "tags": ["entities"]
 }

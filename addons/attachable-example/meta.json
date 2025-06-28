@@ -1,5 +1,6 @@
 {
     "name": "Attachable Example",
     "type": "mcpack",
+    "mcpack_type": "rp",
     "tags": ["items"]
 }

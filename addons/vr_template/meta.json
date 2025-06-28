@@ -1,5 +1,6 @@
 {
     "name": "VR Template",
     "type": "mcpack",
+    "mcpack_type": "rp",
     "tags": ["vr"]
 }
