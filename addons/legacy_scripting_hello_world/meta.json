@@ -1,0 +1,5 @@
+{
+    "name": "Legacy Scripting Hello World",
+    "type": "mcpack",
+    "tags": ["script-api"]
+}
