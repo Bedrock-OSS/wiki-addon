@@ -24,7 +24,7 @@ jobs:
               uses: ncipollo/release-action@v1
               with:
                   artifacts: "*.mcaddon,*.mcpack,*.zip"
-                  bodyFile: "release.md"
+                  bodyFile: "package/release.md"
                   token: ${{ secrets.GITHUB_TOKEN }}
                   tag: "download"
                   name: "Downloads"
