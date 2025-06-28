@@ -7,10 +7,24 @@ You can find the latest `mcaddons` [here](https://github.com/Bedrock-OSS/wiki-ad
 
 Please, follow the [style](https://wiki.bedrock.dev/meta/style-guide.html)!
 After your commit, packs in release will be updated.
-To specify output format, add prefix to folder name:
 
-| Prefix | Output Format |
-|--------|---------------|
-| `mp`   | .mcpack       |
-| `ma`   | .mcaddon      |
-| other  | .zip          |
+Please add a `meta.json` file to the root of the pack with the name, type, and tags keys set. For example:
+```json
+{
+    "name": "Custom Item Models",
+    "type": "mcaddon",
+    "tags": ["items"]
+}
+```
+- `name` - the name for the add-on
+- `type` - "mcaddon" or "mcpack", used to determine how the add-on should be packaged.
+- `tags` - optional should include what is included in the add-on e.g. "blocks", "items", "entities"
+If you instead want to package an add-on as a mcpack, add the `mcpack_type` key like below:
+```json
+{
+    "name": "mcfunction timers",
+    "type": "mcpack",
+    "mcpack_type": "bp",
+    "tags": ["functions"]
+}
+```
