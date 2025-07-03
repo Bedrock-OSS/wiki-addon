@@ -22,6 +22,8 @@ for addondir in os.listdir(rootdir):
             print(f"Invalid JSON in {meta_file_path}")
             sys.exit(1)
 
+    os.remove(meta_file_path)
+
     addon_type = meta.get("type")
     
     if addon_type == "mcaddon":
