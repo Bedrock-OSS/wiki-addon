@@ -1,5 +1,5 @@
 {
-    "name": "Custom Trees",
+    "name": "Material Example Mobs",
     "type": "mcaddon",
-    "tags": ["world-generation"]
+    "tags": ["entities"]
 }
