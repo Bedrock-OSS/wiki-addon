@@ -3,7 +3,7 @@ import shutil
 import json
 import sys
 
-rootdir = './addons'
+rootdir = './resources'
 
 for addondir in os.listdir(rootdir):
     full_path = os.path.join(rootdir, addondir)
