@@ -1,6 +1,6 @@
 {
     "name": "Geometry Fixer",
     "type": "mcpack",
-    "mcpack_type": "rp",
+    "archive_root": "rp",
     "tags": ["blocks"]
 }

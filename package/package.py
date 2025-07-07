@@ -33,21 +33,17 @@ for addondir in os.listdir(rootdir):
         os.rename(f"{output_path}.zip", f"{output_path}.mcaddon")
     
     elif addon_type == "mcpack":
-        mcpack_type = meta.get("mcpack_type")
+        archive_root = meta.get("archive_root")
         
-        if mcpack_type in ["rp", "bp"]:
-            subfolder = os.path.join(full_path, mcpack_type)
-            
-            if os.path.isdir(subfolder):
-                output_path = os.path.join(rootdir, f"{addondir}")
+        subfolder = os.path.join(full_path, archive_root)
+        
+        if os.path.isdir(subfolder):
+            output_path = os.path.join(rootdir, f"{addondir}")
 
-                shutil.make_archive(output_path, 'zip', subfolder)
-                os.rename(f"{output_path}.zip", f"{output_path}.mcpack")
-            else:
-                print(f"{mcpack_type} folder missing in {addondir}")
-                sys.exit(1)
+            shutil.make_archive(output_path, 'zip', subfolder)
+            os.rename(f"{output_path}.zip", f"{output_path}.mcpack")
         else:
-            print(f"Unknown mcpack_type in {addondir}")
+            print(f"{archive_root} folder missing in {addondir}")
             sys.exit(1)
     
     else:

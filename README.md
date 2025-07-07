@@ -19,12 +19,12 @@ Please add a `meta.json` file to the root of the pack with the name, type, and t
 - `name` - the name for the add-on
 - `type` - "mcaddon" or "mcpack", used to determine how the add-on should be packaged.
 - `tags` - optional should include what is included in the add-on e.g. "blocks", "items", "entities"
-If you instead want to package an add-on as a mcpack, add the `mcpack_type` key like below:
+If you instead want to package an add-on as a mcpack, add the `archive_root` key like below:
 ```json
 {
     "name": "mcfunction timers",
     "type": "mcpack",
-    "mcpack_type": "bp",
+    "archive_root": "bp",
     "tags": ["functions"]
 }
 ```
