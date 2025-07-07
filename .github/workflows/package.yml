@@ -23,7 +23,7 @@ jobs:
             - name: Publish release
               uses: ncipollo/release-action@v1
               with:
-                  artifacts: "addons/*.mcaddon,addons/*.mcpack,addons/*.zip"
+                  artifacts: "resources/*.mcaddon,resources/*.mcpack,resources/*.zip"
                   bodyFile: "package/release.md"
                   token: ${{ secrets.GITHUB_TOKEN }}
                   tag: "download"
