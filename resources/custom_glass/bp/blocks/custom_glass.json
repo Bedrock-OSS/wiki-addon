@@ -1,0 +1,31 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:block": {
+        "description": {
+            "identifier": "wiki:custom_glass",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "minecraft:geometry": {
+                "identifier": "geometry.custom_glass",
+                "culling": "wiki:culling.custom_glass"
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "custom_glass",
+                    "render_method": "blend"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 0.3
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 0.3
+            },
+            "minecraft:light_dampening": 0,
+            "minecraft:loot": "loot_tables/empty.json"
+        }
+    }
+}
