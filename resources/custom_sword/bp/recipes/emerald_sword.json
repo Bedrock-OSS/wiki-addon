@@ -1,0 +1,26 @@
+{
+    "format_version": "1.21.70",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "wiki:custom_sword"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["X", "X", "#"],
+        "key": {
+            "#": {
+                "item": "minecraft:stick"
+            },
+            "X": {
+                "item": "minecraft:emerald"
+            }
+        },
+        "result": {
+            "item": "wiki:custom_sword"
+        },
+        "unlock": [
+            {
+                "item": "minecraft:emerald"
+            }
+        ]
+    }
+}

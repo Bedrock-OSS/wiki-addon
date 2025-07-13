@@ -1,0 +1,17 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Custom Sword",
+        "description": "Adds a custom sword",
+        "uuid": "9e65740e-291d-4095-adf7-8cad03f69eca",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 21, 90 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "00bca405-1b62-4bc8-8398-9f461fb72e06",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
