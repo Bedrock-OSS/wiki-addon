@@ -1,0 +1,6 @@
+{
+    "name": "Player Geometry",
+    "type": "mcpack",
+    "archive_root": "rp",
+    "tags": ["entities"]
+}
