@@ -1,0 +1,66 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:block": {
+        "description": {
+            "identifier": "wiki:stripped_custom_log",
+            "traits": {
+                "minecraft:placement_position": {
+                    "enabled_states": [ "minecraft:block_face" ]
+                }
+            }
+        },
+        "components": {
+            "minecraft:geometry": {
+                "identifier": "minecraft:geometry.full_block"
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "stripped_custom_log_side"
+                },
+                "down": {
+                    "texture": "stripped_custom_log_top"
+                },
+                "up": {
+                    "texture": "stripped_custom_log_top"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 2
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 2
+            },
+            "minecraft:flammable": {
+                "catch_chance_modifier": 5,
+                "destroy_chance_modifier": 5
+            },
+            "tag:minecraft:is_axe_item_destructible": { }
+        },
+        "permutations": [
+            // X axis
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'west' || q.block_state('minecraft:block_face') == 'east'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [ 0, 0, 90 ] },
+                    "minecraft:map_color": "#694628"
+                }
+            },
+            // Y axis
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'down' || q.block_state('minecraft:block_face') == 'up'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [ 0, 0, 0 ] },
+                    "minecraft:map_color": "#77623c"
+                }
+            },
+            // Z axis
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'north' || q.block_state('minecraft:block_face') == 'south'",
+                "components": {
+                    "minecraft:transformation": { "rotation": [ 90, 0, 0 ] },
+                    "minecraft:map_color": "#694628"
+                }
+            }
+        ]
+    }
+}

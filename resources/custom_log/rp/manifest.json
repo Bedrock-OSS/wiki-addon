@@ -1,0 +1,23 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Custom Log RP",
+        "description": "By Hatchi",
+        "uuid": "20208e07-11da-4398-959c-6cf4c39cfe0c",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 21, 90 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "72cb8459-037c-4b0d-96f0-c5052bb6105a",
+            "version": [ 1, 0, 0 ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "27aa68cc-62db-4b77-be4b-d741217ca39c",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}

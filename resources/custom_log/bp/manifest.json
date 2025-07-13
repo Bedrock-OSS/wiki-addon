@@ -1,0 +1,33 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Custom Log BP",
+        "description": "By Hatchi",
+        "uuid": "27aa68cc-62db-4b77-be4b-d741217ca39c",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 21, 90 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "bd4adca9-7ecd-4fcd-afc0-14af84b9c46d",
+            "version": [ 1, 0, 0 ]
+        },
+        {
+            "type": "script",
+            "uuid": "51ebe96a-d5bb-49fb-96a6-01466b9371ad",
+            "version": [ 1, 0, 0 ],
+            "entry": "scripts/main.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "20208e07-11da-4398-959c-6cf4c39cfe0c",
+            "version": [ 1, 0, 0 ]
+        },
+        {
+            "module_name": "@minecraft/server",
+            "version": "2.0.0"
+        }
+    ]
+}

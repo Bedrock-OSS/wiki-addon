@@ -1,0 +1,20 @@
+{
+  "resource_pack_name": "wiki",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "custom_log_top": {
+      "textures": "textures/wiki/custom_log_top"
+    },
+    "custom_log_side": {
+      "textures": "textures/wiki/custom_log_side"
+    },
+    "stripped_custom_log_top": {
+      "textures": "textures/wiki/stripped_custom_log_top"
+    },
+    "stripped_custom_log_side": {
+      "textures": "textures/wiki/stripped_custom_log_side"
+    }
+  }
+}
