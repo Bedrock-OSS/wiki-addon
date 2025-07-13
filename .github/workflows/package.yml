@@ -11,13 +11,20 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2.1.1
-            - name: Bedrock Addon Packager
-              uses: Fabrimat/addon-packager-action@v0.2
+
+            - name: Set up Python
+              uses: actions/setup-python@v5 
+              with:
+                python-version: '3.13'
+            
+            - name: Run Python script
+              run: python package/package.py
+
             - name: Publish release
               uses: ncipollo/release-action@v1
               with:
-                  artifacts: "*.mcaddon,*.mcpack,*.zip"
-                  bodyFile: "release.md"
+                  artifacts: "resources/*.mcaddon,resources/*.mcpack,resources/*.zip"
+                  bodyFile: "package/release.md"
                   token: ${{ secrets.GITHUB_TOKEN }}
                   tag: "download"
                   name: "Downloads"

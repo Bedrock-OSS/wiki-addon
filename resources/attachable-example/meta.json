@@ -1,0 +1,6 @@
+{
+    "name": "Attachable Example",
+    "type": "mcpack",
+    "archive_root": "rp",
+    "tags": ["items"]
+}

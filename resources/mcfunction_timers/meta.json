@@ -1,0 +1,6 @@
+{
+    "name": "mcfunction timers",
+    "type": "mcpack",
+    "archive_root": "bp",
+    "tags": ["functions"]
+}

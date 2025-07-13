@@ -1,0 +1,6 @@
+{
+    "name": "Legacy Scripting Hello World",
+    "type": "mcpack",
+    "archive_root": "bp",
+    "tags": ["script-api"]
+}
