@@ -1,0 +1,39 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Dyed Slime RP",
+        "description": "By Hatchibombotar",
+        "uuid": "f7743af8-d5de-408b-9f7e-a413b51760dd",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            21,
+            90
+        ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "f13de0e0-b8f4-4f69-812e-4316d9a1ebc9",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "b8764276-7fce-41c2-a2f9-5634e8df5053",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}

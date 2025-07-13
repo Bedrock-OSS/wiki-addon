@@ -1,0 +1,32 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:block": {
+        "description": {
+            "identifier": "wiki:custom_slime_block",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "minecraft:geometry": "geometry.custom_slime_block",
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "custom_slime_block",
+                    "render_method": "blend"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 0.033 // minecraft.wiki states this should be 0.05, but in game this is too slow.
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 0
+            },
+            "minecraft:light_dampening": 0,
+            "minecraft:movable": {
+                "movement_type": "push_pull",
+                "sticky": "same"
+            },
+            "minecraft:map_color": "#7fb238"
+        }
+    }
+}

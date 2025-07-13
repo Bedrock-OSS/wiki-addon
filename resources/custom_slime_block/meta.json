@@ -1,0 +1,5 @@
+{
+    "name": "Custom Slime Block",
+    "type": "mcaddon",
+    "tags": ["blocks"]
+}
