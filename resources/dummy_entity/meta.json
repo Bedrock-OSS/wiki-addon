@@ -1,0 +1,6 @@
+{
+    "name": "Dummy Entity",
+    "type": "mcpack",
+    "archive_root": "bp",
+    "tags": ["entities"]
+}
