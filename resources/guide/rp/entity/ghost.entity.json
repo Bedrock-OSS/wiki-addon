@@ -13,10 +13,7 @@
                 "default": "geometry.ghost"
             },
             "scripts": {
-                "animate": [
-                    "walk_controller",
-                    "attack_controller"
-                ]
+                "animate": ["walk_controller", "attack_controller"]
             },
             "animations": {
                 "walk_controller": "controller.animation.ghost.walk",
@@ -29,9 +26,7 @@
                 "overlay_color": "#bdd1d1",
                 "base_color": "#9fb3b3"
             },
-            "render_controllers": [
-                "controller.render.ghost"
-            ]
+            "render_controllers": ["controller.render.ghost"]
         }
     }
 }

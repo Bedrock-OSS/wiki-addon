@@ -4,26 +4,24 @@
         "name": "pack.name",
         "description": "pack.description",
         "uuid": "71a0724b-655e-410b-a8de-7e21ae1735e3",
-        "version": [
-            1,
-            0,
-            0
-        ],
-        "min_engine_version": [
-            1,
-            16,
-            0
-        ]
+        "version": "1.1.0",
+        "min_engine_version": [1, 21, 90]
+    },
+    "metadata": {
+        "authors": ["Bedrock OSS"],
+        "url": "https://wiki.bedrock.dev/guide/introduction"
     },
     "modules": [
         {
             "type": "resources",
             "uuid": "8e17a282-7d9e-4b84-a602-f5e2909d660f",
-            "version": [
-                1,
-                0,
-                0
-            ]
+            "version": "1.1.0"
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "1990a121-3ee2-4c1d-ba25-d8454911c4be",
+            "version": "1.1.0"
         }
     ]
 }

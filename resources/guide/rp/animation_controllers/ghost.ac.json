@@ -5,20 +5,14 @@
             "states": {
                 "default": {
                     "transitions": [
-                        {
-                            "attacking": "query.is_delayed_attacking"
-                        }
+                        { "attacking": "query.is_delayed_attacking" }
                     ]
                 },
                 "attacking": {
                     "blend_transition": 0.2,
-                    "animations": [
-                        "attack"
-                    ],
+                    "animations": ["attack"],
                     "transitions": [
-                        {
-                            "default": "!query.is_delayed_attacking"
-                        }
+                        { "default": "!query.is_delayed_attacking" }
                     ]
                 }
             }
@@ -28,24 +22,16 @@
             "states": {
                 "standing": {
                     "blend_transition": 0.2,
-                    "animations": [
-                        "idle"
-                    ],
+                    "animations": ["idle"],
                     "transitions": [
-                        {
-                            "moving": "query.modified_move_speed > 0.1"
-                        }
+                        { "moving": "query.modified_move_speed > 0.1" }
                     ]
                 },
                 "moving": {
                     "blend_transition": 0.2,
-                    "animations": [
-                        "move"
-                    ],
+                    "animations": ["move"],
                     "transitions": [
-                        {
-                            "standing": "query.modified_move_speed < 0.1"
-                        }
+                        { "standing": "query.modified_move_speed < 0.1" }
                     ]
                 }
             }

@@ -1,11 +1,15 @@
 {
-    "format_version": "1.10",
+    "format_version": "1.21.90",
     "minecraft:item": {
-      "description": {
-        "identifier": "wiki:ectoplasm"
-      },
-      "components": {
-        "minecraft:max_stack_size": 16
-      }
+        "description": {
+            "identifier": "wiki:ectoplasm",
+            "menu_category": {
+                "category": "items"
+            }
+        },
+        "components": {
+            "minecraft:max_stack_size": 16,
+            "minecraft:icon": "wiki:ectoplasm"
+        }
     }
-  }
+}
