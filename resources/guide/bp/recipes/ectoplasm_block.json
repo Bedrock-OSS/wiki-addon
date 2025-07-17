@@ -1,0 +1,28 @@
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "wiki:ectoplasm_block"
+        },
+        "tags": ["crafting_table"],
+        "pattern": [
+            // 3×3 grid of Ectoplasm items
+            "###",
+            "###",
+            "###"
+        ],
+        "key": {
+            "#": {
+                "item": "wiki:ectoplasm"
+            }
+        },
+        "unlock": [
+            {
+                "item": "wiki:ectoplasm" // Unlock this recipe when the player acquires an Ectoplasm item
+            }
+        ],
+        "result": {
+            "item": "wiki:ectoplasm_block"
+        }
+    }
+}

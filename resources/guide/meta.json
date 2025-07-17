@@ -1,5 +1,5 @@
 {
     "name": "Beginner's Guide",
     "type": "mcaddon",
-    "tags": ["entities", "items"]
+    "tags": ["blocks", "entities", "items"]
 }

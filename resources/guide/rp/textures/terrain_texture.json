@@ -1,0 +1,9 @@
+{
+    "resource_pack_name": "Ghostly Guide",
+    "texture_name": "atlas.terrain",
+    "texture_data": {
+        "wiki:ectoplasm_block": {
+            "textures": "textures/blocks/ectoplasm_block"
+        }
+    }
+}
