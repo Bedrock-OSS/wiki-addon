@@ -1,7 +1,7 @@
 # Bedrock Examples
 
 This repository contains example behavior and resource packs, used for showcasing various mechanics on the Bedrock Wiki.
-You can find the latest `mcaddons` [here](https://github.com/Bedrock-OSS/bedrock-examples/releases/tag/download).
+You can find the latest downloads [here](https://github.com/Bedrock-OSS/bedrock-examples/releases/tag/download).
 
 ## Adding Resources
 
@@ -19,10 +19,9 @@ Please add a `meta.json` file to the root of the pack with the name, type, and t
 ```
 
 - `name` - the name for the add-on
-- `type` - "mcaddon" or "mcpack", used to determine how the add-on should be packaged.
+- `type` - "mcaddon", "mcpack" or "zip", used to determine how the add-on should be packaged.
+- `archive_root` - optional root subfolder to create the archive from, useful when packaging as "mcpack".
 - `tags` - optional should include what is included in the add-on e.g. "blocks", "items", "entities"
-
-If you instead want to package an add-on as a mcpack, add the `archive_root` key like below:
 
 ```json
 {
